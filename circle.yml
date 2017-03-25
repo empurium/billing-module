@@ -1,0 +1,16 @@
+machine:
+  timezone:
+    America/Chicago
+  node:
+    version:
+      6.9.4
+
+dependencies:
+  override:
+    - yarn install --no-progress
+
+test:
+  override:
+    - npm run lint
+    #- npm run test:circle
+    #- npm run build:circle
