@@ -8,6 +8,9 @@ import { WizardComponent } from './src/wizard/wizard.component';
 import { PlansComponent } from './src/plans/plans.component';
 import { PaymentComponent } from './src/payment/payment.component';
 
+export * from './src/billing.service';
+export * from './src/billing.routing';
+
 @NgModule({
     imports: [
         CommonModule,
