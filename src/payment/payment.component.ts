@@ -29,7 +29,7 @@ export class PaymentComponent implements OnInit {
      * It is important to catch errors in this process.
      */
     public subscribe(): void {
-        if (this.submitting) {
+        if (this.submitting || this.cardErrors !== '') {
             return;
         }
 
@@ -74,7 +74,10 @@ export class PaymentComponent implements OnInit {
         this.billingService.cardElement.on('change', (event: StripeResponse) => {
             if (event.error) {
                 this.error(event.error.message);
+                return;
             }
+
+            this.error('');
         });
     }
 
@@ -82,7 +85,7 @@ export class PaymentComponent implements OnInit {
      * Handle successful payments/subscriptions.
      */
     private success(response: SubscriptionResponse): void {
-        console.log(response.message);
+        this.submitting = false;
         this.router.navigate(['/']);
     }
 
