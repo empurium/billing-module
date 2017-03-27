@@ -1,0 +1,34 @@
+.card.card-plan {
+  z-index: 200;
+  &.selected {
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.15);
+    transition: all 250ms;
+    &:hover {
+      box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-block {
+      h4 {
+        background-color: #4fa951;
+        color: white;
+        transition: all 250ms;
+      }
+    }
+  }
+  &:hover {
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .card-block {
+    h4 {
+      cursor: pointer;
+      display: block;
+      color: #efefef;
+      height: 100px;
+      background-color: #95a695;
+      text-align: center;
+      line-height: 100px;
+      vertical-align: middle;
+    }
+  }
+}

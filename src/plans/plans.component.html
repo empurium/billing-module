@@ -1,0 +1,29 @@
+<div class="animated fadeInRight">
+    <h2>Choose a plan that's right for you.</h2>
+    <p class="mt-2 mb-3">Downgrade or upgrade at any time.</p>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-4 text-center animated fadeIn" *ngFor="let plan of billingService.plans">
+            <div class="card card-plan" [class.selected]="selected(plan)">
+                <div class="card-block">
+                    <h4 (click)="select(plan)">{{ plan.name }}</h4>
+
+                    <h6 class="card-title mt-2 mb-2">
+                        ${{ plan.price }}/{{ plan.period }}
+                    </h6>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Accurate predictions</li>
+                        <li class="list-group-item">Publication search</li>
+                        <li class="list-group-item">View unlimited publications</li>
+                        <li class="list-group-item">Download files from publications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 {{ grid() }} text-center animated fadeIn" *ngIf="billingService.plans && billingService.plans.length">
+            <button (click)="continue()" class="btn btn-lg btn-success btn-pointer">Continue</button>
+        </div>
+    </div>
+</div>
