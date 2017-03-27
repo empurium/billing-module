@@ -14,17 +14,21 @@
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
 
-"@angular/compiler@^2.4.10":
-  version "2.4.10"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.4.10.tgz#f51fd34820b2a02c7cb61fbcf49873c58056fb0c"
+"@angular/compiler@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.0.0.tgz#e1aa061a6f8ef269f9748af1a7bc290f9d37ed6c"
 
-"@angular/core@^2.4.10":
-  version "2.4.10"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.4.10.tgz#0b8320a65065965d998645b1f5cd3cf769b441ea"
+"@angular/core@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.0.0.tgz#fd877e074b29dfa9c63b96a21995fc7556d423a3"
 
-"@angular/http@^2.4.10":
-  version "2.4.10"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-2.4.10.tgz#ff6beade5b39c989ebf2393c49b34eebd43e9555"
+"@angular/http@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@angular/http/-/http-4.0.0.tgz#45a538eac42a0b13f3744c7e8bafeb17d58da31c"
+
+"@angular/router@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-4.0.0.tgz#f4a2dc83b44e023db1d6f2c12ca5a37a22c66afc"
 
 "@angular/tsc-wrapped@4.0.0":
   version "4.0.0"
@@ -32,15 +36,19 @@
   dependencies:
     tsickle "^0.21.0"
 
-"@freescan/http@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@freescan/http/-/http-1.0.4.tgz#72ba6e354224b0e3ad63cfc067c3f4a3afef71a5"
+"@freescan/http@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@freescan/http/-/http-1.0.5.tgz#d30b5b9e0eda6dbddd8cf78694ae5eb38f8ab15e"
   dependencies:
-    "@angular/core" "^2.4.10"
-    "@angular/http" "^2.4.10"
+    "@angular/core" "^4.0.0"
+    "@angular/http" "^4.0.0"
     angular-oauth2-oidc "^1.0.20"
     lodash "^4.17.4"
     rxjs "^5.2.0"
+
+"@freescan/skeleton@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-0.0.1.tgz#5f0b5c23af390e858b52a0d057ec6010ede9a6d6"
 
 "@types/lodash@^4.14.56":
   version "4.14.58"
@@ -391,10 +399,10 @@ jsesc@~0.5.0:
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
 
 latest-version@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/latest-version/-/latest-version-3.0.0.tgz#3104f008c0c391084107f85a344bc61e38970649"
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/latest-version/-/latest-version-3.1.0.tgz#a205383fea322b33b5ae3b18abee0dc2f356ee15"
   dependencies:
-    package-json "^3.0.0"
+    package-json "^4.0.0"
 
 lazy-req@^2.0.0:
   version "2.0.0"
@@ -470,9 +478,9 @@ optimist@~0.6.0:
     minimist "~0.0.1"
     wordwrap "~0.0.2"
 
-package-json@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/package-json/-/package-json-3.1.0.tgz#ce281900fe8052150cc6709c6c006c18fdb2f379"
+package-json@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/package-json/-/package-json-4.0.0.tgz#f3c9dc8738f5b59304d54d2cfb3f91d08fdd7998"
   dependencies:
     got "^6.7.1"
     registry-auth-token "^3.0.1"

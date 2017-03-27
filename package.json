@@ -22,15 +22,16 @@
   "homepage": "https://github.com/FreeScanDotCom/freescan-billing#readme",
   "dependencies": {
     "@angular/common": "^4.0.0",
-    "@angular/core": "^2.4.10",
-    "@angular/http": "^2.4.10",
-    "@freescan/http": "^1.0.4",
+    "@angular/core": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/router": "^4.0.0",
+    "@freescan/http": "^1.0.5",
+    "@freescan/skeleton": "^0.0.1",
     "lodash": "^4.17.4",
     "rxjs": "^5.2.0"
   },
   "devDependencies": {
-    "@angular/compiler": "^2.4.10",
-    "@angular/core": "^2.4.10",
+    "@angular/compiler": "^4.0.0",
     "@types/lodash": "^4.14.56",
     "codelyzer": "^3.0.0-beta.4",
     "rxjs": "^5.2.0",
