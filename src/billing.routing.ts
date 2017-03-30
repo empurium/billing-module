@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { PlansComponent } from './plans/plans.component';
 import { PaymentComponent } from './payment/payment.component';
 
 export const billingRoutes: Routes = [
     {
-        path:      '',
+        path:      'subscriptions',
+        component: SubscriptionsComponent,
+    },
+    {
+        path:      'plans',
         component: PlansComponent,
     },
     {

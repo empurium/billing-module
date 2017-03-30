@@ -7,6 +7,7 @@ import { FREESCAN_ENV, Environment, AuthenticationService } from '@freescan/skel
 import { BillingRoutingModule } from './src/billing.routing';
 import { BillingService } from './src/billing.service';
 import { WizardComponent } from './src/wizard/wizard.component';
+import { SubscriptionsComponent } from './src/subscriptions/subscriptions.component';
 import { PlansComponent } from './src/plans/plans.component';
 import { PaymentComponent } from './src/payment/payment.component';
 
@@ -27,6 +28,7 @@ export * from './src/billing.routing';
 
     declarations: [
         WizardComponent,
+        SubscriptionsComponent,
         PlansComponent,
         PaymentComponent,
     ],
