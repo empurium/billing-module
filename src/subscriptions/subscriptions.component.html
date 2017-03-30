@@ -1,0 +1,28 @@
+<div>
+    <h2>Current Subscriptions</h2>
+
+    <div class="row animated fadeIn" *ngIf="subscriptions && subscriptions.length">
+        <div class="col-sm-12 col-md-4 text-center" *ngFor="let subscription of subscriptions">
+            <div class="card">
+                <div class="card-header">
+                    {{ subscription.id }}
+                </div>
+                <div class="card-block">
+                    {{ subscription.card_brand }}
+                    <br />
+                    ****{{ subscription.card_last_four }}
+                    <br />
+                    Exp: {{ subscription.card_expiration_date }}
+                    <br />
+                    Ends at: {{ subscription.ends_at }}
+                    <br />
+                    Trial ends: {{ subscription.trial_ends_at }}
+                    <br />
+                </div>
+                <div class="card-footer">
+                    <button (click)="deleteSubscription(subscription)" class="btn btn-danger btn-pointer">Unsubscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
