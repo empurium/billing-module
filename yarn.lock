@@ -3,58 +3,42 @@
 
 
 "@angular/common@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-4.0.0.tgz#ca18983222fdab4ecaa7a8b99eda6ff661e6dc92"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-4.0.1.tgz#df488eada842b2d841ded750712292b18387b5b0"
 
 "@angular/compiler-cli@^4.0.0-rc.5":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-4.0.0.tgz#35b2d40cd35135aecec4be659532148f5ac67da6"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-4.0.1.tgz#90c60d491c12e1da901a0aeb3990470aa96e9bfa"
   dependencies:
-    "@angular/tsc-wrapped" "4.0.0"
+    "@angular/tsc-wrapped" "4.0.1"
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
 
 "@angular/compiler@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.0.0.tgz#e1aa061a6f8ef269f9748af1a7bc290f9d37ed6c"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.0.1.tgz#15721edb148167a2d83b6f9324817e658eac8280"
 
 "@angular/core@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.0.0.tgz#fd877e074b29dfa9c63b96a21995fc7556d423a3"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.0.1.tgz#0b110a001012076ea696460ccd922707bcdf51ba"
 
 "@angular/http@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-4.0.0.tgz#45a538eac42a0b13f3744c7e8bafeb17d58da31c"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/http/-/http-4.0.1.tgz#bf87e7da9dc1f1567f246f9a09723e1cc3543d32"
 
 "@angular/platform-browser@^4.0.0":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.0.1.tgz#4b9efbeb2fbb900de188743b988802d3aa2b33ff"
 
 "@angular/router@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-4.0.0.tgz#f4a2dc83b44e023db1d6f2c12ca5a37a22c66afc"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-4.0.1.tgz#2d73a4b6c40e18d5cd0bfd1f20222af64a11c11e"
 
-"@angular/tsc-wrapped@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-4.0.0.tgz#ea91eeda98029cdb0a4ac37d5e25d9d12a4333c1"
+"@angular/tsc-wrapped@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-4.0.1.tgz#5323cc99263b097bceeb8e423270b5f58ffb2186"
   dependencies:
     tsickle "^0.21.0"
-
-"@freescan/authentication@^1.0.2":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@freescan/authentication/-/authentication-1.0.4.tgz#7646319602c57ebaf24f89d557bf57583ebcea97"
-  dependencies:
-    "@freescan/skeleton" "^1.0.3"
-    angular-oauth2-oidc "^1.0.20"
-    angular2-jwt "^0.2.0"
-
-"@freescan/authentication@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@freescan/authentication/-/authentication-1.0.7.tgz#7622bee30540a07938f4b693e3ba9fec686ecb80"
-  dependencies:
-    "@freescan/skeleton" "^1.0.5"
-    angular-oauth2-oidc "^1.0.20"
-    angular2-jwt "^0.2.0"
 
 "@freescan/http@^1.0.5":
   version "1.0.5"
@@ -66,21 +50,22 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
-"@freescan/skeleton@^1.0.3", "@freescan/skeleton@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.0.5.tgz#74d498079becd41abad2ec76105d7ff370c2f0fb"
+"@freescan/skeleton@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.0.10.tgz#36f8e4db044ad922531c4e526eaa46818bfdfda0"
   dependencies:
     "@angular/core" "^4.0.0"
     "@angular/http" "^4.0.0"
     "@angular/platform-browser" "^4.0.0"
     "@angular/router" "^4.0.0"
-    "@freescan/authentication" "^1.0.2"
     "@freescan/http" "^1.0.5"
-    ng2-bootstrap "^1.4.2"
+    angular-oauth2-oidc "^1.0.20"
+    angular2-jwt "^0.2.0"
+    ng2-bootstrap "1.4.0"
 
 "@types/lodash@^4.14.56":
-  version "4.14.58"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.58.tgz#18d45863b6119c1ffffe935c1f51fe044c8c4102"
+  version "4.14.59"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.59.tgz#bb0a556a2acf1b7cb8d99ec0657af4ab3aa0529b"
 
 angular-oauth2-oidc@^1.0.20:
   version "1.0.20"
@@ -479,15 +464,15 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-moment@2.18.1:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+moment@2.17.1:
+  version "2.17.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
 
-ng2-bootstrap@^1.4.2:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/ng2-bootstrap/-/ng2-bootstrap-1.6.0.tgz#5daef103700ed0595680cf4022ab2540f93c50d4"
+ng2-bootstrap@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ng2-bootstrap/-/ng2-bootstrap-1.4.0.tgz#72f814d0d6abf2e16fa37b26acb5910f44c59598"
   dependencies:
-    moment "2.18.1"
+    moment "2.17.1"
 
 ngast@^0.0.15:
   version "0.0.15"
@@ -550,8 +535,8 @@ pseudomap@^1.0.1:
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
 
 rc@^1.0.1, rc@^1.1.6:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/rc/-/rc-1.1.7.tgz#c5ea564bb07aff9fd3a5b32e906c1d3a65940fea"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/rc/-/rc-1.2.0.tgz#c7de973b7b46297c041366b2fd3d2363b1697c66"
   dependencies:
     deep-extend "~0.4.0"
     ini "~1.3.0"
@@ -738,8 +723,8 @@ tsutils@^1.1.0:
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-1.4.0.tgz#84f8a83df9967d35bf1ff3aa48c7339593d64e19"
 
 typescript@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.2.1.tgz#4862b662b988a4c8ff691cc7969622d24db76ae9"
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.2.2.tgz#606022508479b55ffa368b58fee963a03dfd7b0c"
 
 unique-string@^1.0.0:
   version "1.0.0"
