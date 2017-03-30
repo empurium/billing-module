@@ -6,6 +6,7 @@ import {
     StripeResponse,
     GatewayResponse,
     PlanResponse,
+    Subscription,
     SubscriptionResponse,
     Plan,
 } from '@freescan/skeleton';
@@ -20,8 +21,11 @@ export class BillingService {
     public stripe: any;
     public stripeElements: any;
 
-    // Available / Chosen Plan
+    // Cache these in BillingService instance
+    public subscriptionsResponse: SubscriptionResponse;
     public plans: Plan[] = [];
+
+    // Selected plan
     public plan: Plan;
 
     // Stripe does not allow recreating Card elements when Components reinitialize
@@ -40,7 +44,7 @@ export class BillingService {
      * Note: You will need to have Stripe's js available on the client.
      */
     public configureStripe(stripe: any, callback?: Function): void {
-        this.gateways()
+        this.getGateway()
             .subscribe((gateway: GatewayResponse) => {
                 this.stripe = stripe(gateway.data.key);
                 this.stripeElements = this.stripe.elements();
@@ -53,22 +57,33 @@ export class BillingService {
     }
 
     /**
-     * Request the active subscriptions for the given user.
-     * Always request these (no cache) since they could change at any point.
-     */
-    public subscriptions(userId: string): Observable<SubscriptionResponse> {
-        return this.http
-            .hostname(this.cashierUrl)
-            .get(`users/${userId}/subscriptions`);
-    }
-
-    /**
      * Request the Gateway information for the Stripe key.
      */
-    public gateways(): Observable<GatewayResponse> {
+    public getGateway(): Observable<GatewayResponse> {
         return this.http
             .hostname(this.cashierUrl)
             .get(`gateways/${this.gatewayId}`);
+    }
+
+    /**
+     * Request the active subscriptions for the given user.
+     * Always request these (no cache) since they could change at any point.
+     */
+    public getSubscriptions(userId: string): Observable<SubscriptionResponse> {
+        if (this.subscriptionsResponse) {
+            return Observable.of(this.subscriptionsResponse);
+        }
+
+        return this.http
+            .hostname(this.cashierUrl)
+            .get(`users/${userId}/subscriptions?includes=plan`);
+    }
+
+    /**
+     * Unsubscribe to a given subscription.
+     */
+    public deleteSubscription(subscription: Subscription): Observable<SubscriptionResponse> {
+        return this.http.delete(`subscriptions/${subscription.id}`);
     }
 
     /**

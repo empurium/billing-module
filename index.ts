@@ -1,11 +1,13 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpService } from '@freescan/http';
-import { FREESCAN_ENV, Environment } from '@freescan/skeleton';
+import { FREESCAN_ENV, Environment, AuthenticationService } from '@freescan/skeleton';
 
 import { BillingRoutingModule } from './src/billing.routing';
 import { BillingService } from './src/billing.service';
 import { WizardComponent } from './src/wizard/wizard.component';
+import { SubscriptionsComponent } from './src/subscriptions/subscriptions.component';
 import { PlansComponent } from './src/plans/plans.component';
 import { PaymentComponent } from './src/payment/payment.component';
 
@@ -26,6 +28,7 @@ export * from './src/billing.routing';
 
     declarations: [
         WizardComponent,
+        SubscriptionsComponent,
         PlansComponent,
         PaymentComponent,
     ],
@@ -35,8 +38,14 @@ export class BillingModule {
         return {
             ngModule:  BillingModule,
             providers: [
-                HttpService,
                 { provide: FREESCAN_ENV, useValue: environment },
+                OAuthService,
+                HttpService,
+                {
+                    provide:  AuthenticationService,
+                    useClass: AuthenticationService,
+                    deps:     [OAuthService, FREESCAN_ENV],
+                },
                 {
                     provide:  BillingService,
                     useClass: BillingService,

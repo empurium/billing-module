@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService, SubscriptionResponse } from '@freescan/skeleton';
+
+import { BillingService } from '../billing.service';
 
 @Component({
     selector: 'freescan-wizard',
@@ -7,10 +10,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class WizardComponent implements OnInit {
     constructor(private route: ActivatedRoute,
-                private router: Router) {
+                private router: Router,
+                private authenticationService: AuthenticationService,
+                private billingService: BillingService) {
     }
 
     public ngOnInit(): void {
+        this.billingService.getPlans();
         this.start();
     }
 
@@ -18,8 +24,22 @@ export class WizardComponent implements OnInit {
      * Start the wizard with the first route.
      */
     public start(): void {
-        if (!this.route.firstChild) {
-            this.router.navigate([''], { relativeTo: this.route });
-        }
+        this.billingService
+            .getSubscriptions(this.authenticationService.userId())
+            .subscribe(
+                (response: SubscriptionResponse) => {
+                    this.billingService.subscriptionsResponse = response;
+                    this.router.navigate(['subscriptions'], {
+                        relativeTo: this.route,
+                        skipLocationChange: true,
+                    });
+                },
+                (error: Error): void => {
+                    this.router.navigate(['plans'], {
+                        relativeTo: this.route,
+                        skipLocationChange: true,
+                    });
+                },
+            );
     }
 }
