@@ -50,9 +50,9 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
-"@freescan/skeleton@^1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.0.10.tgz#36f8e4db044ad922531c4e526eaa46818bfdfda0"
+"@freescan/skeleton@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.0.11.tgz#75a97262bdedf8ca019b824ad77be8f1d2d21b6d"
   dependencies:
     "@angular/core" "^4.0.0"
     "@angular/http" "^4.0.0"
@@ -62,10 +62,6 @@
     angular-oauth2-oidc "^1.0.20"
     angular2-jwt "^0.2.0"
     ng2-bootstrap "1.4.0"
-
-"@types/lodash@^4.14.56":
-  version "4.14.59"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.59.tgz#bb0a556a2acf1b7cb8d99ec0657af4ab3aa0529b"
 
 angular-oauth2-oidc@^1.0.20:
   version "1.0.20"
