@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpService } from '@freescan/http';
 import {
-    ENVIRONMENT,
+    FREESCAN_ENV,
     Environment,
     StripeResponse,
     GatewayResponse,
@@ -29,7 +29,7 @@ export class BillingService {
     public formReady: boolean = false;
 
     constructor(private http: HttpService,
-                @Inject(ENVIRONMENT) private environment: Environment) {
+                @Inject(FREESCAN_ENV) private environment: Environment) {
         this.configure(this.environment);
     }
 

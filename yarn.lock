@@ -48,11 +48,11 @@
     angular-oauth2-oidc "^1.0.20"
     angular2-jwt "^0.2.0"
 
-"@freescan/authentication@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@freescan/authentication/-/authentication-1.0.5.tgz#fbb43f16720e6e41602f4ed9a14844697c4002eb"
+"@freescan/authentication@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@freescan/authentication/-/authentication-1.0.7.tgz#7622bee30540a07938f4b693e3ba9fec686ecb80"
   dependencies:
-    "@freescan/skeleton" "^1.0.4"
+    "@freescan/skeleton" "^1.0.5"
     angular-oauth2-oidc "^1.0.20"
     angular2-jwt "^0.2.0"
 
@@ -66,9 +66,9 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
-"@freescan/skeleton@^1.0.3", "@freescan/skeleton@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.0.4.tgz#501889eff36d337680b12e77985b46bc6cb8d1c1"
+"@freescan/skeleton@^1.0.3", "@freescan/skeleton@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.0.5.tgz#74d498079becd41abad2ec76105d7ff370c2f0fb"
   dependencies:
     "@angular/core" "^4.0.0"
     "@angular/http" "^4.0.0"
