@@ -41,7 +41,6 @@ export class BillingModule {
                 { provide: FREESCAN_ENV, useValue: environment },
                 OAuthService,
                 HttpService,
-                AuthenticationService,
                 {
                     provide:  AuthenticationService,
                     useClass: AuthenticationService,
