@@ -1,7 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpService } from '@freescan/http';
-import { FREESCAN_ENV, Environment } from '@freescan/skeleton';
+import { FREESCAN_ENV, Environment, AuthenticationService } from '@freescan/skeleton';
 
 import { BillingRoutingModule } from './src/billing.routing';
 import { BillingService } from './src/billing.service';
@@ -35,8 +36,15 @@ export class BillingModule {
         return {
             ngModule:  BillingModule,
             providers: [
-                HttpService,
                 { provide: FREESCAN_ENV, useValue: environment },
+                OAuthService,
+                HttpService,
+                AuthenticationService,
+                {
+                    provide:  AuthenticationService,
+                    useClass: AuthenticationService,
+                    deps:     [OAuthService, FREESCAN_ENV],
+                },
                 {
                     provide:  BillingService,
                     useClass: BillingService,
