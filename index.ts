@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpService } from '@freescan/http';
+import { ENVIRONMENT, Environment } from '@freescan/skeleton';
 
 import { BillingRoutingModule } from './src/billing.routing';
 import { BillingService } from './src/billing.service';
@@ -30,12 +31,17 @@ export * from './src/billing.routing';
     ],
 })
 export class BillingModule {
-    public static forRoot(): ModuleWithProviders {
+    public static forRoot(environment: Environment): ModuleWithProviders {
         return {
             ngModule:  BillingModule,
             providers: [
                 HttpService,
-                BillingService,
+                { provide: ENVIRONMENT, useValue: environment },
+                {
+                    provide:  BillingService,
+                    useClass: BillingService,
+                    deps:     [ENVIRONMENT],
+                },
             ],
         };
     }

@@ -1,6 +1,6 @@
 {
   "name": "@freescan/billing",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "FreeScan Billing Interface",
   "main": "index.ts",
   "scripts": {
@@ -25,8 +25,9 @@
     "@angular/core": "^4.0.0",
     "@angular/http": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@freescan/authentication": "^1.0.5",
     "@freescan/http": "^1.0.5",
-    "@freescan/skeleton": "^0.0.1",
+    "@freescan/skeleton": "^1.0.4",
     "lodash": "^4.17.4",
     "rxjs": "^5.2.0"
   },

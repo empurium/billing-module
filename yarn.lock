@@ -26,6 +26,10 @@
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-4.0.0.tgz#45a538eac42a0b13f3744c7e8bafeb17d58da31c"
 
+"@angular/platform-browser@^4.0.0":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.0.1.tgz#4b9efbeb2fbb900de188743b988802d3aa2b33ff"
+
 "@angular/router@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-4.0.0.tgz#f4a2dc83b44e023db1d6f2c12ca5a37a22c66afc"
@@ -35,6 +39,22 @@
   resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-4.0.0.tgz#ea91eeda98029cdb0a4ac37d5e25d9d12a4333c1"
   dependencies:
     tsickle "^0.21.0"
+
+"@freescan/authentication@^1.0.2":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@freescan/authentication/-/authentication-1.0.4.tgz#7646319602c57ebaf24f89d557bf57583ebcea97"
+  dependencies:
+    "@freescan/skeleton" "^1.0.3"
+    angular-oauth2-oidc "^1.0.20"
+    angular2-jwt "^0.2.0"
+
+"@freescan/authentication@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@freescan/authentication/-/authentication-1.0.5.tgz#fbb43f16720e6e41602f4ed9a14844697c4002eb"
+  dependencies:
+    "@freescan/skeleton" "^1.0.4"
+    angular-oauth2-oidc "^1.0.20"
+    angular2-jwt "^0.2.0"
 
 "@freescan/http@^1.0.5":
   version "1.0.5"
@@ -46,9 +66,17 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
-"@freescan/skeleton@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-0.0.1.tgz#5f0b5c23af390e858b52a0d057ec6010ede9a6d6"
+"@freescan/skeleton@^1.0.3", "@freescan/skeleton@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.0.4.tgz#501889eff36d337680b12e77985b46bc6cb8d1c1"
+  dependencies:
+    "@angular/core" "^4.0.0"
+    "@angular/http" "^4.0.0"
+    "@angular/platform-browser" "^4.0.0"
+    "@angular/router" "^4.0.0"
+    "@freescan/authentication" "^1.0.2"
+    "@freescan/http" "^1.0.5"
+    ng2-bootstrap "^1.4.2"
 
 "@types/lodash@^4.14.56":
   version "4.14.58"
@@ -61,6 +89,10 @@ angular-oauth2-oidc@^1.0.20:
     base64-js "^1.2.0"
     js-base64 "^2.1.9"
     sha256 "^0.2.0"
+
+angular2-jwt@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/angular2-jwt/-/angular2-jwt-0.2.0.tgz#8ae34d357bbe8eac388d2472d694e9af92d79f40"
 
 ansi-align@^1.1.0:
   version "1.1.0"
@@ -446,6 +478,16 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+moment@2.18.1:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+
+ng2-bootstrap@^1.4.2:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/ng2-bootstrap/-/ng2-bootstrap-1.6.0.tgz#5daef103700ed0595680cf4022ab2540f93c50d4"
+  dependencies:
+    moment "2.18.1"
 
 ngast@^0.0.15:
   version "0.0.15"

@@ -1,9 +1,9 @@
-<div class="animated fadeInRight">
+<div>
     <h2>Choose a plan that's right for you.</h2>
     <p class="mt-2 mb-3">Downgrade or upgrade at any time.</p>
 
-    <div class="row">
-        <div class="col-sm-12 col-md-4 text-center animated fadeIn" *ngFor="let plan of billingService.plans">
+    <div class="row animated fadeInUp" *ngIf="billingService.plans && billingService.plans.length">
+        <div class="col-sm-12 col-md-4 text-center" *ngFor="let plan of billingService.plans">
             <div class="card card-plan" [class.selected]="selected(plan)">
                 <div class="card-block">
                     <h4 (click)="select(plan)">{{ plan.name }}</h4>
@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="col-sm-12 {{ grid() }} text-center animated fadeIn" *ngIf="billingService.plans && billingService.plans.length">
+        <div class="col-sm-12 {{ grid() }} text-center">
             <button (click)="continue()" class="btn btn-lg btn-success btn-pointer">Continue</button>
         </div>
     </div>

@@ -1,6 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpService } from '@freescan/http';
-import { StripeResponse, GatewayResponse, PlanResponse, SubscriptionResponse, Plan } from '@freescan/skeleton';
+import {
+    ENVIRONMENT,
+    Environment,
+    StripeResponse,
+    GatewayResponse,
+    PlanResponse,
+    SubscriptionResponse,
+    Plan,
+} from '@freescan/skeleton';
 import { Observable } from 'rxjs';
 
 import { gatewayId, stripeStyles } from './configuration';
@@ -20,28 +28,38 @@ export class BillingService {
     public cardElement: any;
     public formReady: boolean = false;
 
-    constructor(private http: HttpService) {
+    constructor(private http: HttpService,
+                @Inject(ENVIRONMENT) private environment: Environment) {
+        this.configure(this.environment);
     }
 
     /**
-     * Configure the BillingService with a Cashier API URL, set up Stripe, etc.
+     * Configure the BillingService Stripe instance using the Gateway ID from the API.
      * Supports a callback if timing is necessary after instantiating Stripe.
      *
      * Note: You will need to have Stripe's js available on the client.
      */
-    public configure(stripe: any, cashierUrl: string, callback?: Function): void {
-        this.cashierUrl = cashierUrl;
-
+    public configureStripe(stripe: any, callback?: Function): void {
         this.gateways()
             .subscribe((gateway: GatewayResponse) => {
-                this.stripe         = stripe(gateway.data.key);
+                this.stripe = stripe(gateway.data.key);
                 this.stripeElements = this.stripe.elements();
-                this.formReady      = true;
+                this.formReady = true;
 
                 if (typeof callback === 'function') {
                     callback(gateway);
                 }
             });
+    }
+
+    /**
+     * Request the active subscriptions for the given user.
+     * Always request these (no cache) since they could change at any point.
+     */
+    public subscriptions(userId: string): Observable<SubscriptionResponse> {
+        return this.http
+            .hostname(this.cashierUrl)
+            .get(`users/${userId}/subscriptions`);
     }
 
     /**
@@ -99,5 +117,12 @@ export class BillingService {
         if (!this.cardElement) {
             this.cardElement = this.stripeElements.create('card', { style: stripeStyles });
         }
+    }
+
+    /**
+     * Configure the BillingService.
+     */
+    private configure(environment: Environment): void {
+        this.cashierUrl = environment.api.cashier;
     }
 }
