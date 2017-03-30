@@ -40,7 +40,7 @@ export class BillingModule {
                 {
                     provide:  BillingService,
                     useClass: BillingService,
-                    deps:     [FREESCAN_ENV],
+                    deps:     [HttpService, FREESCAN_ENV],
                 },
             ],
         };
