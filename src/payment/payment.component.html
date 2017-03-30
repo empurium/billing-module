@@ -1,25 +1,29 @@
-<div class="row animated fadeInRight">
-    <div class="col-sm-12 col-md-8">
-        <div class="card">
-            <div class="card-header" *ngIf="billingService.plan">
-                Subscribe to
-                <strong>{{ billingService.plan.name }}</strong>
-                at ${{ billingService.plan.price }}/{{ billingService.plan.period }}
-            </div>
-            <div class="card-block">
-                <div class="form-row">
-                    <label for="card-element">Credit or Debit card</label>
-                    <div id="card-element">
-                        <!-- a Stripe Element will be inserted here. -->
-                    </div>
+<div class="row">
+    <h2>Enter your payment information.</h2>
 
-                    <p class="card-errors text-danger mt-2">
-                        <strong>{{ cardErrors }}</strong>
-                    </p>
+    <div class="row animated fadeIn">
+        <div class="col-sm-12 col-md-8">
+            <div class="card">
+                <div class="card-header" *ngIf="billingService.plan">
+                    Subscribe to
+                    <strong>{{ billingService.plan.name }}</strong>
+                    at ${{ billingService.plan.price }}/{{ billingService.plan.period }}
                 </div>
-            </div>
-            <div class="card-footer">
-                <button (click)="subscribe()" [disabled]="submitting" class="btn btn-primary btn-pointer">Submit Payment</button>
+                <div class="card-block">
+                    <div class="form-row">
+                        <label for="card-element">Credit or Debit card</label>
+                        <div id="card-element">
+                            <!-- a Stripe Element will be inserted here. -->
+                        </div>
+
+                        <p class="card-errors text-danger mt-2">
+                            <strong>{{ cardErrors }}</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button (click)="subscribe()" [disabled]="submitting" class="btn btn-primary btn-pointer">Submit Payment</button>
+                </div>
             </div>
         </div>
     </div>
