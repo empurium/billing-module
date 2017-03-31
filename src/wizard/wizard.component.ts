@@ -16,18 +16,18 @@ export class WizardComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.navigate();
+        this.getSubscriptions();
     }
 
     /**
      * Start the wizard with the appropriate first route depending
      * on whether the user has current subscriptions.
      */
-    public navigate(): void {
+    public getSubscriptions(): void {
         this.billing
             .getSubscriptions(this.authentication.userId())
             .subscribe(
-                (response: Subscription[]) => {
+                (response: Subscription) => {
                     this.router.navigate(['subscriptions'], { relativeTo: this.route });
                 },
                 (error: string): void => {

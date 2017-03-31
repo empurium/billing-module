@@ -26,8 +26,8 @@ export class BillingService {
 
     // Cache these in BillingService instance
     public gateway: Gateway;
-    public subscriptions: Subscription[] = [];
-    public plans: Plan[]                 = [];
+    public subscription: Subscription;
+    public plans: Plan[] = [];
 
     // Selected plan
     public plan: Plan;
@@ -64,7 +64,7 @@ export class BillingService {
      * Request the Gateway information for the Stripe key.
      */
     public getGateway(): Observable<Gateway> {
-        if (this.gateway && this.gateway.key) {
+        if (this.gateway && this.gateway.id) {
             return Observable.of(this.gateway);
         }
 
@@ -97,18 +97,30 @@ export class BillingService {
     /**
      * Request the active subscriptions for the given user.
      * Always request these (no cache) since they could change at any point.
+     *
+     * TODO - Support more than one subscription.
      */
-    public getSubscriptions(userId: string): Observable<Subscription[]> {
-        if (this.subscriptions && this.subscriptions.length) {
-            return Observable.of(this.subscriptions);
+    public getSubscriptions(userId: string): Observable<Subscription> {
+        if (this.subscription && this.subscription.id) {
+            return Observable.of(this.subscription);
         }
 
         return this.http
             .hostname(this.cashierUrl)
             .get(`users/${userId}/subscriptions?includes=plan`)
             .map((response: SubscriptionResponse) => {
-                this.subscriptions = response.data;
-                return response.data;
+                this.subscription = response.data ? response.data[0] : null;
+                return response.data[0];
+            });
+    }
+
+    /**
+     * Change from one plan to another.
+     */
+    public changeSubscription(subscription: Subscription, plan: Plan): Observable<SubscriptionResponse> {
+        return this.http
+            .patch(`subscriptions/${subscription.id}`, {
+                plan_id: plan.id,
             });
     }
 

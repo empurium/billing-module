@@ -13,6 +13,7 @@
                                 <th>Price</th>
                                 <th>Card</th>
                                 <th>Expires</th>
+                                <th>Status</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -34,13 +35,18 @@
                                 <td>
                                     <span *ngIf="subscribed(plan)" class="badge badge-success">Active</span>
                                 </td>
+                                <td>
+                                    <button *ngIf="subscribed(plan)" (click)="deleteSubscription()" class="btn btn-danger btn-pointer">
+                                        Unsubscribe
+                                    </button>
+
+                                    <button *ngIf="!subscribed(plan)" (click)="changeSubscription(plan)" class="btn btn-primary btn-pointer">
+                                        Subscribe
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="card-footer">
-                    <button (click)="deleteSubscription(subscription)" class="btn btn-danger btn-pointer">Unsubscribe
-                    </button>
                 </div>
             </div>
         </div>

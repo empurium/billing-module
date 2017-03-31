@@ -16,33 +16,73 @@ export class SubscriptionsComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        //
+        this.getPlans();
     }
 
     /**
      * Check whether the user has a subscription to the given plan.
      */
     public subscribed(plan: Plan): boolean {
-        return _.find(this.billing.subscriptions, { plan: { data: { id: plan.id } } });
+        if (!this.billing.subscription) {
+            return false;
+        }
+
+        return _.find(this.billing.subscription, { data: { id: plan.id } });
     }
 
     /**
-     * Unsubscribe from a given subscription.
+     * Change from one plan to another.
+     * Clears the cache of the subscription.
      */
-    public deleteSubscription(subscription: Subscription): void {
+    public changeSubscription(plan: Plan): void {
         this.billing
-            .deleteSubscription(subscription)
+            .changeSubscription(this.billing.subscription, plan)
             .subscribe(
                 (response: SubscriptionResponse) => {
-                    alert('Unsubscribed!');
-                    this.billing.subscriptions = [];
+                    alert('Changed plans!');
+                    this.billing.subscription = null;
                     this.router.navigate(['/'], { relativeTo: this.route });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);
                     alert('An error occurred.');
-                    this.billing.subscriptions = [];
+                    this.billing.subscription = null;
                 },
+            );
+    }
+
+    /**
+     * Unsubscribe from a given subscription.
+     * Clears the cache of the subscription.
+     */
+    public deleteSubscription(): void {
+        this.billing
+            .deleteSubscription(this.billing.subscription)
+            .subscribe(
+                (response: SubscriptionResponse) => {
+                    alert('Unsubscribed!');
+                    this.billing.subscription = null;
+                    this.router.navigate(['/'], { relativeTo: this.route });
+                },
+                (error: SubscriptionResponse) => {
+                    console.error(error);
+                    alert('An error occurred.');
+                    this.billing.subscription = null;
+                },
+            );
+    }
+
+    /**
+     * Get the available Plans.
+     */
+    private getPlans(): void {
+        this.billing
+            .getPlans()
+            .subscribe(
+                (plans: Plan[]) => {
+                    // Accessible from this.billing.plans cache
+                },
+                (error: string) => console.error(error),
             );
     }
 }
