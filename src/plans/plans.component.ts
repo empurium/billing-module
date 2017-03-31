@@ -14,25 +14,25 @@ export class PlansComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private billingService: BillingService) {
+                public billing: BillingService) {
     }
 
     public ngOnInit(): void {
-        this.billingService.getPlans();
+        this.getPlans();
     }
 
     /**
      * Test whether or not the given Plan is currently selected.
      */
     public selected(plan: Plan): boolean {
-        return this.billingService.plan ? this.billingService.plan.id === plan.id : false;
+        return this.billing.plan ? this.billing.plan.id === plan.id : false;
     }
 
     /**
      * Select a given Plan.
      */
     public select(plan: Plan): void {
-        this.billingService.plan = plan;
+        this.billing.plan = plan;
     }
 
     /**
@@ -48,6 +48,23 @@ export class PlansComponent implements OnInit {
      * Grid columns based on the number of plans. To center the Continue button accordingly.
      */
     public grid(): string {
-        return 'col-md-' + (this.billingService.plans ? (this.billingService.plans.length * this.cardWidth) : 12);
+        return 'col-md-' + (this.billing.plans ? (this.billing.plans.length * this.cardWidth) : 12);
+    }
+
+    /**
+     * Get the available Plans.
+     */
+    private getPlans(): void {
+        this.billing
+            .getPlans()
+            .subscribe(
+                (plans: Plan[]) => {
+                    // Automatically select the first plan until we have Defaults
+                    if (plans && plans.length) {
+                        this.billing.plan = plans[0];
+                    }
+                },
+                (error: string) => console.error(error),
+            );
     }
 }

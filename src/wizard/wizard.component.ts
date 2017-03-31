@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthenticationService, SubscriptionResponse } from '@freescan/skeleton';
+import { AuthenticationService, Subscription } from '@freescan/skeleton';
 
 import { BillingService } from '../billing.service';
 
@@ -11,27 +11,27 @@ import { BillingService } from '../billing.service';
 export class WizardComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private authenticationService: AuthenticationService,
-                private billingService: BillingService) {
+                private authentication: AuthenticationService,
+                private billing: BillingService) {
     }
 
     public ngOnInit(): void {
-        this.billingService.getPlans();
-        this.start();
+        this.billing.getPlans();
+        this.navigate();
     }
 
     /**
-     * Start the wizard with the first route.
+     * Start the wizard with the appropriate first route depending
+     * on whether the user has current subscriptions.
      */
-    public start(): void {
-        this.billingService
-            .getSubscriptions(this.authenticationService.userId())
+    public navigate(): void {
+        this.billing
+            .getSubscriptions(this.authentication.userId())
             .subscribe(
-                (response: SubscriptionResponse) => {
-                    this.billingService.subscriptionsResponse = response;
+                (response: Subscription[]) => {
                     this.router.navigate(['subscriptions'], { relativeTo: this.route });
                 },
-                (error: Error): void => {
+                (error: string): void => {
                     this.router.navigate(['plans'], { relativeTo: this.route });
                 },
             );

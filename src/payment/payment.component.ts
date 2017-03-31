@@ -18,7 +18,7 @@ export class PaymentComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private billingService: BillingService) {
+                public billing: BillingService) {
     }
 
     public ngOnInit(): void {
@@ -37,7 +37,7 @@ export class PaymentComponent implements OnInit {
         }
 
         this.submitting = true;
-        this.billingService
+        this.billing
             .createToken()
             .then((result: StripeResponse) => {
                 if (result.error) {
@@ -46,10 +46,12 @@ export class PaymentComponent implements OnInit {
                 }
 
                 // Subscribe!
-                this.billingService.pay(result.token.id).subscribe(
-                    (response: SubscriptionResponse) => this.success(response),
-                    (error: Error) => this.error(error.message),
-                );
+                this.billing
+                    .pay(result.token.id)
+                    .subscribe(
+                        (response: SubscriptionResponse) => this.success(response),
+                        (error: Error) => this.error(error.message),
+                    );
             })
             .catch((error: any) => {
                 this.error(error);
@@ -60,7 +62,7 @@ export class PaymentComponent implements OnInit {
      * Redirect the user if they land directly on the Payment form URL when it is not ready.
      */
     private ready(): boolean {
-        if (!this.billingService.stripeElements || !this.billingService.plan) {
+        if (!this.billing.stripeElements || !this.billing.plan) {
             this.router.navigate(['../'], { relativeTo: this.route });
             return false;
         }
@@ -72,9 +74,9 @@ export class PaymentComponent implements OnInit {
      * Create the credit card form, attach it to the DOM, and watch for error messages.
      */
     private createCardElement(): void {
-        this.billingService.createCardElement();
-        this.billingService.cardElement.mount('#card-element');
-        this.billingService.cardElement.on('change', (event: StripeResponse) => {
+        this.billing.createCardElement();
+        this.billing.cardElement.mount('#card-element');
+        this.billing.cardElement.on('change', (event: StripeResponse) => {
             this.complete = event.complete;
 
             if (event.error) {

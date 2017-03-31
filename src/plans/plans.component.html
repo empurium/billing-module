@@ -2,8 +2,8 @@
     <h2>Choose a plan that's right for you.</h2>
     <p class="mt-2 mb-2">Downgrade or upgrade at any time.</p>
 
-    <div class="row animated fadeIn" *ngIf="billingService.plans && billingService.plans.length">
-        <div class="col-sm-12 col-md-4 text-center" *ngFor="let plan of billingService.plans">
+    <div class="row animated fadeIn" *ngIf="billing.plans && billing.plans.length">
+        <div class="col-sm-12 col-md-4 text-center" *ngFor="let plan of billing.plans">
             <div class="card card-plan" [class.selected]="selected(plan)">
                 <div class="card-block">
                     <h4 (click)="select(plan)">{{ plan.name }}</h4>

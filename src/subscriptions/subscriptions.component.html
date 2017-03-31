@@ -2,26 +2,45 @@
     <h2>Current Subscriptions</h2>
     <p class="mt-2 mb-2"></p>
 
-    <div class="row animated fadeIn" *ngIf="subscriptions && subscriptions.length">
-        <div class="col-sm-12 col-md-4 text-center" *ngFor="let subscription of subscriptions">
+    <div class="row animated fadeIn" *ngIf="billing.plans && billing.plans.length">
+        <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">
-                    {{ subscription.id }}
-                </div>
                 <div class="card-block">
-                    {{ subscription.card_brand }}
-                    <br />
-                    ****{{ subscription.card_last_four }}
-                    <br />
-                    Exp: {{ subscription.card_expiration_date }}
-                    <br />
-                    Ends at: {{ subscription.ends_at }}
-                    <br />
-                    Trial ends: {{ subscription.trial_ends_at }}
-                    <br />
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Plan</th>
+                                <th>Price</th>
+                                <th>Card</th>
+                                <th>Expires</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let plan of billing.plans">
+                                <td><strong>{{ plan.name }}</strong></td>
+                                <td>
+                                    ${{ plan.price }}/{{ plan.period }}
+                                </td>
+                                <td>
+                                    <span *ngIf="subscribed(plan)">
+                                        {{ plan.card_brand }}:
+                                        {{ plan.card_last_four }}
+                                    </span>
+                                </td>
+                                <td>
+                                    {{ plan.card_expiration_date }}
+                                </td>
+                                <td>
+                                    <span *ngIf="subscribed(plan)" class="badge badge-success">Active</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="card-footer">
-                    <button (click)="deleteSubscription(subscription)" class="btn btn-danger btn-pointer">Unsubscribe</button>
+                    <button (click)="deleteSubscription(subscription)" class="btn btn-danger btn-pointer">Unsubscribe
+                    </button>
                 </div>
             </div>
         </div>

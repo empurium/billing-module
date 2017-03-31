@@ -5,10 +5,10 @@
     <div class="row animated fadeIn">
         <div class="col-sm-12 col-md-8">
             <div class="card">
-                <div class="card-header" *ngIf="billingService.plan">
+                <div class="card-header" *ngIf="billing.plan">
                     Subscribe to
-                    <strong>{{ billingService.plan.name }}</strong>
-                    at ${{ billingService.plan.price }}/{{ billingService.plan.period }}
+                    <strong>{{ billing.plan.name }}</strong>
+                    at ${{ billing.plan.price }}/{{ billing.plan.period }}
                 </div>
                 <div class="card-block">
                     <div class="form-row">

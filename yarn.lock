@@ -68,6 +68,10 @@
     ng2-bootstrap "1.4.0"
     ng2-bootstrap-growl "^0.0.5"
 
+"@types/lodash@^4.14.61":
+  version "4.14.61"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.61.tgz#0518c10805b1f9d21f98f82b1311ac2a6ec75892"
+
 angular-oauth2-oidc@^1.0.20:
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/angular-oauth2-oidc/-/angular-oauth2-oidc-1.0.20.tgz#9b82944e2215c4efc95a223d318b85443948b641"

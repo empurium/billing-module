@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription, SubscriptionResponse } from '@freescan/skeleton';
+import * as _ from 'lodash';
+import { Plan, Subscription, SubscriptionResponse } from '@freescan/skeleton';
 
 import { BillingService } from '../billing.service';
 
@@ -9,35 +10,38 @@ import { BillingService } from '../billing.service';
     templateUrl: './subscriptions.component.html',
 })
 export class SubscriptionsComponent implements OnInit {
-    public subscriptions: Subscription[] = [];
-
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private billingService: BillingService) {
+                public billing: BillingService) {
     }
 
     public ngOnInit(): void {
-        this.subscriptions = this.billingService.subscriptionsResponse
-            ? this.billingService.subscriptionsResponse.data : [];
+        //
+    }
+
+    /**
+     * Check whether the user has a subscription to the given plan.
+     */
+    public subscribed(plan: Plan): boolean {
+        return _.find(this.billing.subscriptions, { plan: { data: { id: plan.id } } });
     }
 
     /**
      * Unsubscribe from a given subscription.
      */
     public deleteSubscription(subscription: Subscription): void {
-        this.billingService
+        this.billing
             .deleteSubscription(subscription)
             .subscribe(
                 (response: SubscriptionResponse) => {
-                    console.log(response);
                     alert('Unsubscribed!');
-                    this.billingService.subscriptionsResponse = undefined;
+                    this.billing.subscriptions = [];
                     this.router.navigate(['/'], { relativeTo: this.route });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);
                     alert('An error occurred.');
-                    this.billingService.subscriptionsResponse = undefined;
+                    this.billing.subscriptions = [];
                 },
             );
     }
