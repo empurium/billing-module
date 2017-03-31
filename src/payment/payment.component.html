@@ -18,12 +18,12 @@
                         </div>
 
                         <p class="card-errors text-danger mt-2">
-                            <strong>{{ cardErrors }}</strong>
+                            <strong>{{ errors }}</strong>
                         </p>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button (click)="subscribe()" [disabled]="submitting" class="btn btn-primary btn-pointer">Submit Payment</button>
+                    <button (click)="subscribe()" [disabled]="disabled" class="btn btn-primary btn-pointer">Submit Payment</button>
                 </div>
             </div>
         </div>

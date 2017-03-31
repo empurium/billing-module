@@ -10,8 +10,10 @@ import { BillingService } from '../billing.service';
     templateUrl: './payment.component.html',
 })
 export class PaymentComponent implements OnInit {
-    private cardErrors: string = '';
+    private disabled: boolean   = true;
     private submitting: boolean = false;
+    private complete: boolean   = false;
+    private errors: string      = '';
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -29,7 +31,7 @@ export class PaymentComponent implements OnInit {
      * It is important to catch errors in this process.
      */
     public subscribe(): void {
-        if (this.submitting || this.cardErrors !== '') {
+        if (this.disabled) {
             return;
         }
 
@@ -57,7 +59,7 @@ export class PaymentComponent implements OnInit {
      * Redirect the user if they land directly on the Payment form URL when it is not ready.
      */
     private ready(): boolean {
-        if (!this.billingService.stripeElements || !this.billingService.formReady || !this.billingService.plan) {
+        if (!this.billingService.stripeElements || !this.billingService.plan) {
             this.router.navigate(['../'], { relativeTo: this.route });
             return false;
         }
@@ -72,12 +74,15 @@ export class PaymentComponent implements OnInit {
         this.billingService.createCardElement();
         this.billingService.cardElement.mount('#card-element');
         this.billingService.cardElement.on('change', (event: StripeResponse) => {
+            this.complete = event.complete;
+
             if (event.error) {
                 this.error(event.error.message);
                 return;
             }
 
             this.error('');
+            this.checkSubmittable();
         });
     }
 
@@ -93,7 +98,19 @@ export class PaymentComponent implements OnInit {
      * Show error messages from Stripe to the user.
      */
     private error(message: string): void {
-        this.cardErrors = '';
-        this.cardErrors = message;
+        this.errors = '';
+        this.errors = message;
+    }
+
+    /**
+     * Whether or not the form is ready to be submitted.
+     */
+    private checkSubmittable(): void {
+        if (!this.submitting && this.errors === '' && this.complete) {
+            this.disabled = false;
+            return;
+        }
+
+        this.disabled = true;
     }
 }
