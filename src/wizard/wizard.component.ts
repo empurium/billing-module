@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { utc } from 'moment';
 import { AuthenticationService, Subscription } from '@freescan/skeleton';
 
 import { BillingService } from '../billing.service';
@@ -26,6 +27,12 @@ export class WizardComponent implements OnInit {
     public getSubscriptions(): void {
         this.billing
             .getSubscriptions(this.authentication.userId())
+            .filter((subscription: Subscription) => {
+                // Filter out subscriptions that have ended
+                return subscription && subscription.ends_at
+                    ? utc().isAfter(utc(subscription.ends_at))
+                    : false;
+            })
             .subscribe(
                 (response: Subscription) => {
                     this.router.navigate(['subscriptions'], { relativeTo: this.route });
