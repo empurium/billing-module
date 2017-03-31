@@ -29,16 +29,10 @@ export class WizardComponent implements OnInit {
             .subscribe(
                 (response: SubscriptionResponse) => {
                     this.billingService.subscriptionsResponse = response;
-                    this.router.navigate(['subscriptions'], {
-                        relativeTo: this.route,
-                        skipLocationChange: true,
-                    });
+                    this.router.navigate(['subscriptions'], { relativeTo: this.route });
                 },
                 (error: Error): void => {
-                    this.router.navigate(['plans'], {
-                        relativeTo: this.route,
-                        skipLocationChange: true,
-                    });
+                    this.router.navigate(['plans'], { relativeTo: this.route });
                 },
             );
     }
