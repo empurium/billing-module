@@ -22,31 +22,46 @@ export class SubscriptionsComponent implements OnInit {
     /**
      * Check whether the user has a subscription to the given plan.
      */
+    public ended(endsAt: string): boolean {
+        return this.billing.ended(endsAt);
+    }
+
+    /**
+     * Check whether the user has a subscription to the given plan.
+     */
     public subscribed(plan: Plan): boolean {
-        if (!this.billing.subscription) {
+        if (!this.billing.subscriptions) {
             return false;
         }
 
-        return _.find(this.billing.subscription, { data: { id: plan.id } });
+        return _.find(this.billing.subscriptions, { data: { id: plan.id } });
+    }
+
+    /**
+     * Restart an existing (inactive) subscription.
+     * TODO: Implement this.
+     */
+    public restartSubscription(subscription: Subscription): boolean {
+        return true;
     }
 
     /**
      * Change from one plan to another.
      * Clears the cache of the subscription.
      */
-    public changeSubscription(plan: Plan): void {
+    public changeSubscription(subscription: Subscription, plan: Plan): void {
         this.billing
-            .changeSubscription(this.billing.subscription, plan)
+            .changeSubscription(subscription, plan)
             .subscribe(
                 (response: SubscriptionResponse) => {
                     alert('Changed plans!');
-                    this.billing.subscription = null;
+                    this.billing.subscriptions = [];
                     this.router.navigate(['/'], { relativeTo: this.route });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);
                     alert('An error occurred.');
-                    this.billing.subscription = null;
+                    this.billing.subscriptions = [];
                 },
             );
     }
@@ -55,19 +70,19 @@ export class SubscriptionsComponent implements OnInit {
      * Unsubscribe from a given subscription.
      * Clears the cache of the subscription.
      */
-    public deleteSubscription(): void {
+    public deleteSubscription(subscription: Subscription): void {
         this.billing
-            .deleteSubscription(this.billing.subscription)
+            .deleteSubscription(subscription)
             .subscribe(
                 (response: SubscriptionResponse) => {
                     alert('Unsubscribed!');
-                    this.billing.subscription = null;
+                    this.billing.subscriptions = [];
                     this.router.navigate(['/'], { relativeTo: this.route });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);
                     alert('An error occurred.');
-                    this.billing.subscription = null;
+                    this.billing.subscriptions = [];
                 },
             );
     }

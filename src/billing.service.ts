@@ -1,4 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
+import { utc } from 'moment';
 import { HttpService } from '@freescan/http';
 import {
     FREESCAN_ENV,
@@ -26,7 +27,7 @@ export class BillingService {
 
     // Cache these in BillingService instance
     public gateway: Gateway;
-    public subscription: Subscription;
+    public subscriptions: Subscription[] = [];
     public plans: Plan[] = [];
 
     // Selected plan
@@ -97,21 +98,16 @@ export class BillingService {
     /**
      * Request the active subscriptions for the given user.
      * Always request these (no cache) since they could change at any point.
-     *
-     * TODO - Support more than one subscription.
      */
-    public getSubscriptions(userId: string): Observable<Subscription> {
-        if (this.subscription && this.subscription.id) {
-            return Observable.of(this.subscription);
+    public getSubscriptions(userId: string): Observable<Subscription[]> {
+        if (this.subscriptions && this.subscriptions.length) {
+            return Observable.of(this.subscriptions);
         }
 
         return this.http
             .hostname(this.cashierUrl)
             .get(`users/${userId}/subscriptions?includes=plan`)
-            .map((response: SubscriptionResponse) => {
-                this.subscription = response.data ? response.data[0] : null;
-                return response.data[0];
-            });
+            .map((response: SubscriptionResponse): Subscription[] => response.data);
     }
 
     /**
@@ -129,6 +125,18 @@ export class BillingService {
      */
     public deleteSubscription(subscription: Subscription): Observable<SubscriptionResponse> {
         return this.http.delete(`subscriptions/${subscription.id}`);
+    }
+
+    /**
+     * True if the current time in UTC is after the given end time, aka not yet ended.
+     * Both are converted to UTC.
+     */
+    public ended(endsAt?: string): boolean {
+        if (!endsAt) {
+            return false;
+        }
+
+        return utc().isAfter(utc(endsAt));
     }
 
     /**
