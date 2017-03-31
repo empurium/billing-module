@@ -31,11 +31,13 @@ export class SubscriptionsComponent implements OnInit {
                 (response: SubscriptionResponse) => {
                     console.log(response);
                     alert('Unsubscribed!');
+                    this.billingService.subscriptionsResponse = undefined;
                     this.router.navigate(['/'], { relativeTo: this.route });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);
                     alert('An error occurred.');
+                    this.billingService.subscriptionsResponse = undefined;
                 },
             );
     }
