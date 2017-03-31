@@ -8,6 +8,7 @@ import { BillingService } from '../billing.service';
 @Component({
     selector:    'freescan-payment',
     templateUrl: './payment.component.html',
+    styleUrls:   ['./payment.component.scss'],
 })
 export class PaymentComponent implements OnInit {
     private disabled: boolean   = true;
