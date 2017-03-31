@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription, SubscriptionResponse } from '@freescan/skeleton';
 
 import { BillingService } from '../billing.service';
@@ -10,7 +11,9 @@ import { BillingService } from '../billing.service';
 export class SubscriptionsComponent implements OnInit {
     public subscriptions: Subscription[] = [];
 
-    constructor(private billingService: BillingService) {
+    constructor(private route: ActivatedRoute,
+                private router: Router,
+                private billingService: BillingService) {
     }
 
     public ngOnInit(): void {
@@ -19,7 +22,7 @@ export class SubscriptionsComponent implements OnInit {
     }
 
     /**
-     * Unsubscribe to a given subscription.
+     * Unsubscribe from a given subscription.
      */
     public deleteSubscription(subscription: Subscription): void {
         this.billingService
@@ -28,6 +31,7 @@ export class SubscriptionsComponent implements OnInit {
                 (response: SubscriptionResponse) => {
                     console.log(response);
                     alert('Unsubscribed!');
+                    this.router.navigate(['/'], { relativeTo: this.route });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);
