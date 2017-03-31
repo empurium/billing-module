@@ -16,7 +16,6 @@ export class WizardComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.billing.getPlans();
         this.navigate();
     }
 
