@@ -3,6 +3,7 @@ import { HttpService } from '@freescan/http';
 import {
     FREESCAN_ENV,
     Environment,
+    AuthenticationService,
     Subscription,
     SubscriptionResponse,
     Plan,
@@ -18,15 +19,18 @@ export class SubscriptionService {
     public subscriptions: Subscription[] = [];
 
     constructor(private http: HttpService,
+                private authentication: AuthenticationService,
                 @Inject(FREESCAN_ENV) private environment: Environment) {
         this.cashier = environment.api.cashier;
     }
 
     /**
-     * Request the subscriptions for the given user.
+     * Request the subscriptions for the given user. Default to current user.
      * Always request these (no cache) since they could change at any point.
      */
-    public all(userId: string): Observable<Subscription[]> {
+    public all(userId?: string): Observable<Subscription[]> {
+        userId = userId || this.authentication.userId();
+
         if (this.subscriptions && this.subscriptions.length) {
             return Observable.of(this.subscriptions);
         }

@@ -44,7 +44,7 @@ const providers: Provider[] = [
     {
         provide:  SubscriptionService,
         useClass: SubscriptionService,
-        deps:     [HttpService, FREESCAN_ENV],
+        deps:     [HttpService, AuthenticationService, FREESCAN_ENV],
     },
     {
         provide:  StripeService,
