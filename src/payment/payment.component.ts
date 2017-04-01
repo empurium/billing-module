@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StripeResponse, SubscriptionResponse } from '@freescan/skeleton';
 
-import { BillingService } from '../billing.service';
+import { StripeService } from '../+services/stripe.service';
+import { PlanService } from '../+services/plan.service';
+import { SubscriptionService } from '../+services/subscription.service';
 
 
 @Component({
@@ -18,7 +20,9 @@ export class PaymentComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                public billing: BillingService) {
+                public stripe: StripeService,
+                public plans: PlanService,
+                public subscriptions: SubscriptionService) {
     }
 
     public ngOnInit(): void {
@@ -32,12 +36,12 @@ export class PaymentComponent implements OnInit {
      * It is important to catch errors in this process.
      */
     public subscribe(): void {
-        if (this.disabled) {
+        if (this.disabled || !this.plans.plan) {
             return;
         }
 
         this.submitting = true;
-        this.billing
+        this.stripe
             .createToken()
             .then((result: StripeResponse) => {
                 if (result.error) {
@@ -46,8 +50,8 @@ export class PaymentComponent implements OnInit {
                 }
 
                 // Subscribe!
-                this.billing
-                    .pay(result.token.id)
+                this.subscriptions
+                    .subscribe(result.token.id, this.plans.plan)
                     .subscribe(
                         (response: SubscriptionResponse) => this.success(response),
                         (error: Error) => this.error(error.message),
@@ -62,7 +66,7 @@ export class PaymentComponent implements OnInit {
      * Redirect the user if they land directly on the Payment form URL when it is not ready.
      */
     private ready(): boolean {
-        if (!this.billing.stripeElements || !this.billing.plan) {
+        if (!this.stripe.elements || !this.plans.plan) {
             this.router.navigate(['../'], { relativeTo: this.route });
             return false;
         }
@@ -74,9 +78,9 @@ export class PaymentComponent implements OnInit {
      * Create the credit card form, attach it to the DOM, and watch for error messages.
      */
     private createCardElement(): void {
-        this.billing.createCardElement();
-        this.billing.cardElement.mount('#card-element');
-        this.billing.cardElement.on('change', (event: StripeResponse) => {
+        this.stripe.createCardElement();
+        this.stripe.elements.mount('#card-element');
+        this.stripe.elements.on('change', (event: StripeResponse) => {
             this.complete = event.complete;
 
             if (event.error) {

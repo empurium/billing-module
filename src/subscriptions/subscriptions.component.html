@@ -2,89 +2,49 @@
     <h2>Current Subscriptions</h2>
     <p class="mt-2 mb-2"></p>
 
-    <div class="row animated fadeIn" *ngIf="billing.subscriptions && billing.subscriptions.length">
+    <div class="row animated fadeIn" *ngIf="subscriptions.subscriptions && subscriptions.subscriptions.length">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-block">
                     <table class="table table-hover">
                         <thead>
-                            <tr>
-                                <th>Plan</th>
-                                <th>Price</th>
-                                <th>Ends</th>
-                                <th>Card</th>
-                                <th>Expires</th>
-                                <th>Status</th>
-                                <th>&nbsp;</th>
-                            </tr>
+                        <tr>
+                            <th>Plan</th>
+                            <th>Price</th>
+                            <th>Ends</th>
+                            <th>Card</th>
+                            <th>Expires</th>
+                            <th>Status</th>
+                            <th>&nbsp;</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let subscription of billing.subscriptions">
-                                <td><strong>{{ subscription.plan.data.name }}</strong></td>
-                                <td>
-                                    ${{ subscription.plan.data.price }}/{{ subscription.plan.data.period }}
-                                </td>
-                                <td>{{ subscription.ends_at  }}</td>
-                                <td>
-                                    {{ subscription.card_brand }}
-                                    <span *ngIf="subscription.card_brand && subscription.card_last_four">/</span>
-                                    {{ subscription.card_last_four }}
-                                </td>
-                                <td>
-                                    {{ subscription.card_expiration_date }}
-                                </td>
-                                <td>
-                                    <span *ngIf="!ended(subscription.ends_at)" class="badge badge-success">Active</span>
-                                </td>
-                                <td>
-                                    <button *ngIf="!ended(subscription.ends_at)"
-                                            (click)="deleteSubscription(subscription)"
-                                            class="btn btn-danger btn-pointer">
-                                        Cancel
-                                    </button>
-
-                                    <button *ngIf="ended(subscription.ends_at)"
-                                            (click)="restartSubscription(subscription)"
-                                            class="btn btn-primary btn-pointer">
-                                        Restart
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <h2>Available Plans</h2>
-    <p class="mt-2 mb-2"></p>
-
-    <div class="row animated fadeIn" *ngIf="billing.plans && billing.plans.length">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-block">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Plan</th>
-                                <th>Price</th>
-                                <th>&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let plan of billing.plans">
-                                <td><strong>{{ plan.name }}</strong></td>
-                                <td>
-                                    ${{ plan.price }}/{{ plan.period }}
-                                </td>
-                                <td>
-                                    <button (click)="restartSubscription(plan)" class="btn btn-primary btn-pointer">
-                                        Subscribe
-                                    </button>
-                                </td>
-                            </tr>
+                        <tr *ngFor="let subscription of subscriptions.subscriptions">
+                            <td><strong>{{ subscription.plan.data.name }}</strong></td>
+                            <td>
+                                ${{ subscription.plan.data.price }}/{{ subscription.plan.data.period }}
+                            </td>
+                            <td>{{ subscription.ends_at }}</td>
+                            <td>
+                                {{ subscription.card_brand }}
+                                <span *ngIf="subscription.card_brand && subscription.card_last_four">/</span>
+                                {{ subscription.card_last_four }}
+                            </td>
+                            <td>
+                                {{ subscription.card_expiration_date }}
+                            </td>
+                            <td>
+                                <span *ngIf="!subscriptions.ended(subscription.ends_at)" class="badge badge-success">Active</span>
+                            </td>
+                            <td>
+                                <button
+                                        *ngIf="!subscriptions.ended(subscription.ends_at)"
+                                        (click)="delete(subscription)"
+                                        class="btn btn-danger btn-pointer">
+                                    Cancel
+                                </button>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
