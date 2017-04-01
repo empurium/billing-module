@@ -1,4 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
+import { utc } from 'moment';
 import { HttpService } from '@freescan/http';
 import {
     FREESCAN_ENV,
@@ -76,5 +77,17 @@ export class SubscriptionService {
      */
     public bust(): void {
         this.subscriptions = [];
+    }
+
+    /**
+     * True if the current time in UTC is after the given end time, aka not yet ended.
+     * Both are converted to UTC.
+     */
+    public ended(endsAt?: string): boolean {
+        if (!endsAt) {
+            return false;
+        }
+
+        return utc().isAfter(utc(endsAt));
     }
 }
