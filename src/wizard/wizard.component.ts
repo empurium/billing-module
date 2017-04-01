@@ -31,7 +31,6 @@ export class WizardComponent implements OnInit {
             })
             .subscribe(
                 (subscriptions: Subscription[]) => {
-                    this.subscriptions.subscriptions = subscriptions;
                     this.router.navigate(['subscriptions'], { relativeTo: this.route });
                 },
                 (error: string): void => {
