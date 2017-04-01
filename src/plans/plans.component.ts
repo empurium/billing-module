@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Plan } from '@freescan/skeleton';
 
-import { BillingService } from '../billing.service';
+import { PlanService } from '../+services/plan.service';
+
 
 @Component({
     selector:    'freescan-plans',
@@ -14,7 +15,7 @@ export class PlansComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                public billing: BillingService) {
+                public plans: PlanService) {
     }
 
     public ngOnInit(): void {
@@ -25,14 +26,14 @@ export class PlansComponent implements OnInit {
      * Test whether or not the given Plan is currently selected.
      */
     public selected(plan: Plan): boolean {
-        return this.billing.plan ? this.billing.plan.id === plan.id : false;
+        return this.plans.plan ? this.plans.plan.id === plan.id : false;
     }
 
     /**
      * Select a given Plan.
      */
     public select(plan: Plan): void {
-        this.billing.plan = plan;
+        this.plans.plan = plan;
     }
 
     /**
@@ -48,20 +49,20 @@ export class PlansComponent implements OnInit {
      * Grid columns based on the number of plans. To center the Continue button accordingly.
      */
     public grid(): string {
-        return 'col-md-' + (this.billing.plans ? (this.billing.plans.length * this.cardWidth) : 12);
+        return 'col-md-' + (this.plans.plans ? (this.plans.plans.length * this.cardWidth) : 12);
     }
 
     /**
      * Get the available Plans.
+     * Automatically select the first plan until we have Defaults.
      */
     private getPlans(): void {
-        this.billing
-            .getPlans()
+        this.plans
+            .all()
             .subscribe(
                 (plans: Plan[]) => {
-                    // Automatically select the first plan until we have Defaults
                     if (plans && plans.length) {
-                        this.billing.plan = plans[0];
+                        this.plans.plan = plans[0];
                     }
                 },
                 (error: string) => console.error(error),

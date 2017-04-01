@@ -5,10 +5,10 @@
     <div class="row animated fadeIn">
         <div class="col-sm-12 col-md-8">
             <div class="card">
-                <div class="card-header" *ngIf="billing.plan">
+                <div class="card-header" *ngIf="plans.plan">
                     Subscribe to
-                    <strong>{{ billing.plan.name }}</strong>
-                    at ${{ billing.plan.price }}/{{ billing.plan.period }}
+                    <strong>{{ plans.plan.name }}</strong>
+                    at ${{ plans.plan.price }}/{{ plans.plan.period }}
                 </div>
                 <div class="card-block">
                     <div class="form-row">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button (click)="subscribe()" [disabled]="disabled" class="btn btn-primary btn-pointer">Submit Payment</button>
+                    <button (click)="subscribe()" [disabled]="disabled" class="btn btn-primary btn-pointer">Subscribe</button>
                 </div>
             </div>
         </div>
