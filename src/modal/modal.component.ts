@@ -15,9 +15,6 @@ import { SubscriptionService } from '../+services/subscription.service';
 export class ModalComponent implements AfterViewInit {
     @ViewChild('billingModal') public billingModal: ModalDirective;
 
-    // TODO
-    // Maybe create a ConfigureComponent to get the Gateway, Subscriptions ready
-
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private subscriptions: SubscriptionService,
