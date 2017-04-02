@@ -40,15 +40,15 @@ export class StripeService {
      * Note: You will need to have Stripe's js loaded on the client.
      */
     public configure(): void {
-        if (this.stripe || !window.Stripe) {
-            console.error('Please include the Stripe v3 script tag on your page.');
+        const stripe: any = window['Stripe'];
+        if (this.stripe || !stripe) {
             return;
         }
 
         // Configure Stripe client
         this.gateways.one()
             .subscribe((gateway: Gateway): void => {
-                this.stripe    = window.Stripe(gateway.key);
+                this.stripe    = stripe(gateway.key);
                 this.elements  = this.stripe.elements();
                 this.createCardElement();
                 this.formReady = true;
