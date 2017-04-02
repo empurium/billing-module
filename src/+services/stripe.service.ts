@@ -43,11 +43,13 @@ export class StripeService {
         const stripe: any = window['Stripe'];
 
         // Pre-fetch resources
-        this.subscriptions.all().subscribe(() => {}, () => {});
+        this.subscriptions.all().subscribe(
+            () => { if (typeof callback === 'function') { callback(); } },
+            () => { if (typeof callback === 'function') { callback(); } },
+        );
         this.plans.all().subscribe();
 
         if (this.stripe || !stripe) {
-            if (typeof callback === 'function') { callback(); }
             return;
         }
 
@@ -58,8 +60,6 @@ export class StripeService {
                 this.elements  = this.stripe.elements();
                 this.createCardElement();
                 this.formReady = true;
-
-                if (typeof callback === 'function') { callback(); }
             });
     }
 
