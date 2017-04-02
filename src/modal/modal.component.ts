@@ -5,6 +5,7 @@ import { Subscription } from '@freescan/skeleton';
 
 import { ModalService } from '../+services/modal.service';
 import { SubscriptionService } from '../+services/subscription.service';
+import { StripeService } from '../+services/stripe.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
+                private stripe: StripeService,
                 private subscriptions: SubscriptionService,
                 public modal: ModalService) {
     }
@@ -26,7 +28,9 @@ export class ModalComponent implements OnInit, AfterViewInit {
      * has current subscriptions.
      */
     public ngOnInit(): void {
-        this.navigate();
+        this.stripe.configure(() => {
+            this.navigate();
+        });
     }
 
     /**

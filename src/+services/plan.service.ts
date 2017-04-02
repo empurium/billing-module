@@ -37,6 +37,10 @@ export class PlanService {
             .get('plans')
             .map((response: PlanResponse) => {
                 this.plans = response.data;
+                if (!this.plan && response.data && response.data.length) {
+                    this.plan = response.data[0];
+                }
+
                 return response.data;
             });
     }

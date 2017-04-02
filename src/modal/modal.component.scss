@@ -17,11 +17,11 @@
 
   .btn-billing-modal {
     cursor: pointer;
-    background-color: #31A335;
-    border: 1px solid darken(#31A335, 15%);
+    background-color: #53c557;
+    border: 1px solid darken(#53c557, 10%);
     &:hover {
-      background-color: lighten(#31A335, 5%);
-      border: 1px solid darken(#31A335, 10%);
+      background-color: darken(#53c557, 8%);
+      border: 1px solid darken(#53c557, 15%);
     }
   }
 }

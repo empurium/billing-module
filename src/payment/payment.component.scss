@@ -1,6 +1,20 @@
+.credit-card-form {
+  justify-content: center;
+}
+
 .btn.btn-pointer {
   cursor: pointer;
   &[disabled] {
     cursor: not-allowed;
+  }
+}
+
+.btn-billing-modal {
+  cursor: pointer;
+  background-color: #53c557;
+  border: 1px solid darken(#53c557, 10%);
+  &:hover {
+    background-color: darken(#53c557, 8%);
+    border: 1px solid darken(#53c557, 15%);
   }
 }

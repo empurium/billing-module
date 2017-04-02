@@ -22,8 +22,6 @@ export class PlansComponent implements OnInit {
 
     public ngOnInit(): void {
         this.modal.title = 'Pick Your Plan';
-
-        this.getPlans();
     }
 
     /**
@@ -55,22 +53,5 @@ export class PlansComponent implements OnInit {
      */
     public grid(): string {
         return 'col-md-' + (this.plans.plans ? (this.plans.plans.length * this.cardWidth) : 12);
-    }
-
-    /**
-     * Get the available Plans.
-     * Automatically select the first plan until we have Defaults.
-     */
-    private getPlans(): void {
-        this.plans
-            .all()
-            .subscribe(
-                (plans: Plan[]) => {
-                    if (plans && plans.length) {
-                        this.plans.plan = plans[0];
-                    }
-                },
-                (error: string) => console.error(error),
-            );
     }
 }
