@@ -1,10 +1,10 @@
-<p class="mt-2 mb-2">Downgrade or upgrade at any time.</p>
+<p class="mt-2 mb-2 text-center">Downgrade or upgrade at any time.</p>
 
 <div class="row animated fadeIn" *ngIf="plans.plans && plans.plans.length">
-    <div class="col-sm-12 col-md-4 text-center" *ngFor="let plan of plans.plans">
+    <div class="col-sm-6 text-center" *ngFor="let plan of plans.plans">
         <div class="card card-plan" [class.selected]="selected(plan)">
             <div class="card-block">
-                <h4 (click)="select(plan)">{{ plan.name }}</h4>
+                <h4>{{ plan.name }}</h4>
 
                 <h6 class="card-title mt-2 mb-2">
                     ${{ plan.price }}/{{ plan.period }}
@@ -16,11 +16,9 @@
                     <li class="list-group-item">View unlimited publications</li>
                     <li class="list-group-item">Download files from publications</li>
                 </ul>
+
+                <button type="button" (click)="continue(plan)" class="btn btn-success btn-lg btn-pointer btn-select-plan mt-3">Select</button>
             </div>
         </div>
-    </div>
-
-    <div class="col-sm-12 {{ grid() }} text-center mt-2">
-        <button (click)="continue()" class="btn btn-lg btn-primary btn-pointer">Continue</button>
     </div>
 </div>

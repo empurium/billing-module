@@ -43,7 +43,8 @@ export class PlansComponent implements OnInit {
     /**
      * Begin the payment process.
      */
-    public continue(): void {
+    public continue(plan: Plan): void {
+        this.select(plan);
         this.router
             .navigate(['payment-information'], { relativeTo: this.route.parent })
             .catch((error: Error) => console.error(error));
