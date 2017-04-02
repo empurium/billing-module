@@ -2,9 +2,9 @@
     <thead>
     <tr>
         <th>Plan</th>
-        <th>Ends</th>
-        <th>Card</th>
-        <th>Status</th>
+        <th class="text-center">Ends</th>
+        <th class="text-center">Card</th>
+        <th class="text-center">Status</th>
         <th>&nbsp;</th>
     </tr>
     </thead>
@@ -15,14 +15,14 @@
             <br />
             <span class="text-muted">${{ subscription.plan.data.price }}/{{ subscription.plan.data.period }}</span>
         </td>
-        <td>{{ subscription.ends_at | date:'mediumDate' }}</td>
-        <td>
+        <td class="text-center">{{ subscription.ends_at | date:'mediumDate' }}</td>
+        <td class="text-center">
             {{ subscription.card_brand }}
             <span *ngIf="subscription.card_brand && subscription.card_last_four">/</span>
             {{ subscription.card_last_four }}
             {{ subscription.card_expiration_date }}
         </td>
-        <td>
+        <td class="text-center">
             <span *ngIf="status('active', subscription)" class="badge badge-success">Active</span>
             <span *ngIf="status('ending-soon', subscription)" class="badge badge-danger">Ending Soon</span>
             <span *ngIf="status('ended', subscription)" class="badge badge-default">Ended</span>
@@ -46,7 +46,7 @@
     </tbody>
 </table>
 
-<div class="row mt-3 animated fadeIn" *ngIf="subscriptions.subscriptions">
+<div class="row mt-2 animated fadeIn" *ngIf="subscriptions.subscriptions">
     <div class="col-sm-12 text-center">
         <button type="button" (click)="viewPlans()" class="btn btn-lg btn-success btn-billing-modal btn-pointer">View Plans</button>
     </div>

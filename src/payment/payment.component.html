@@ -7,7 +7,7 @@
     <div class="row credit-card-form mt-3">
         <div class="col-sm-12 col-md-8">
             <div class="form-row">
-                <label for="card-element">Credit or Debit card</label>
+                <label for="card-element" class="mb-2">Credit or Debit card</label>
                 <div id="card-element">
                     <!-- a Stripe Element will be inserted here. -->
                 </div>
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <button type="button" (click)="subscribe()" [disabled]="disabled" class="btn btn-lg btn-success btn-billing-modal btn-pointer mt-3 mb-3">
+    <button type="button" (click)="subscribe()" [disabled]="disabled" class="btn btn-lg btn-success btn-billing-modal btn-pointer mt-1 mb-3">
         Subscribe
     </button>
 </div>

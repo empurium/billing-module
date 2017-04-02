@@ -1,4 +1,8 @@
-<div class="row animated fadeIn" *ngIf="plans.plans && plans.plans.length">
+<p class="mt-2 mb-2 text-center animated fadeIn" *ngIf="plans.plans && plans.plans.length">
+    Downgrade or upgrade at any time.
+</p>
+
+<div class="row animated fadeIn mb-2" *ngIf="plans.plans && plans.plans.length">
     <div class="col-sm-6 text-center" *ngFor="let plan of plans.plans">
         <div class="card card-plan" [class.selected]="selected(plan)">
             <div class="card-block">
@@ -20,7 +24,3 @@
         </div>
     </div>
 </div>
-
-<p class="mt-2 mb-2 text-center" *ngIf="plans.plans && plans.plans.length">
-    Downgrade or upgrade at any time.
-</p>
