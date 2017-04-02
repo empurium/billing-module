@@ -37,17 +37,18 @@ export class StripeService {
      * Pre-fetch the Subscriptions/Plans and set up the Stripe credit card form
      * so the subscription management/payment funnel is very fast.
      *
-     * Note: You will need to have Stripe's js available on the client.
+     * Note: You will need to have Stripe's js loaded on the client.
      */
-    public configure(stripe: any): void {
-        if (this.stripe) {
+    public configure(): void {
+        if (this.stripe || !window.Stripe) {
+            console.error('Please include the Stripe v3 script tag on your page.');
             return;
         }
 
         // Configure Stripe client
         this.gateways.one()
             .subscribe((gateway: Gateway): void => {
-                this.stripe    = stripe(gateway.key);
+                this.stripe    = window.Stripe(gateway.key);
                 this.elements  = this.stripe.elements();
                 this.createCardElement();
                 this.formReady = true;
