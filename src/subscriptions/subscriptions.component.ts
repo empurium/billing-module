@@ -21,10 +21,6 @@ export class SubscriptionsComponent implements OnInit {
 
     public ngOnInit(): void {
         this.modal.title = 'Current Subscriptions';
-
-        if (!this.subscriptions.subscriptions && !this.subscriptions.subscriptions.length) {
-            this.subscriptions.all().subscribe();
-        }
     }
 
     /**
