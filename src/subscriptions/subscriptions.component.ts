@@ -24,6 +24,13 @@ export class SubscriptionsComponent implements OnInit {
     }
 
     /**
+     * Navigate to the list of Plans.
+     */
+    public viewPlans(): void {
+        this.router.navigate(['plans'], { relativeTo: this.route.parent });
+    }
+
+    /**
      * Change from one plan to another.
      * Clears the cache of the subscription.
      */
@@ -33,7 +40,7 @@ export class SubscriptionsComponent implements OnInit {
             .subscribe(
                 (response: SubscriptionResponse) => {
                     alert('Changed plans!');
-                    this.router.navigate(['/'], { relativeTo: this.route });
+                    this.router.navigate(['subscriptions'], { relativeTo: this.route.parent });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);
@@ -52,7 +59,7 @@ export class SubscriptionsComponent implements OnInit {
             .subscribe(
                 (response: SubscriptionResponse) => {
                     alert('Unsubscribed!');
-                    this.router.navigate(['/'], { relativeTo: this.route });
+                    this.router.navigate(['subscriptions'], { relativeTo: this.route.parent });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);
