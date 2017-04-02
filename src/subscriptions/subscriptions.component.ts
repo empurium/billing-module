@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Plan, Subscription, SubscriptionResponse } from '@freescan/skeleton';
 
+import { ModalService } from '../+services/modal.service';
 import { SubscriptionService } from '../+services/subscription.service';
 import { PlanService } from '../+services/plan.service';
 
@@ -13,12 +14,17 @@ import { PlanService } from '../+services/plan.service';
 export class SubscriptionsComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
+                private modal: ModalService,
                 public subscriptions: SubscriptionService,
                 public plans: PlanService) {
     }
 
     public ngOnInit(): void {
-        this.subscriptions.all().subscribe();
+        this.modal.title = 'Current Subscriptions';
+
+        if (!this.subscriptions.subscriptions && !this.subscriptions.subscriptions.length) {
+            this.subscriptions.all().subscribe();
+        }
     }
 
     /**

@@ -39,7 +39,10 @@ export class SubscriptionService {
         return this.http
             .hostname(this.cashier)
             .get(`users/${userId}/subscriptions?includes=plan`)
-            .map((response: SubscriptionResponse): Subscription[] => response.data);
+            .map((response: SubscriptionResponse): Subscription[] => {
+                this.subscriptions = response.data;
+                return response.data;
+            });
     }
 
     /**

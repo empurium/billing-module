@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StripeResponse, SubscriptionResponse } from '@freescan/skeleton';
 
+import { ModalService } from '../+services/modal.service';
 import { StripeService } from '../+services/stripe.service';
 import { PlanService } from '../+services/plan.service';
 import { SubscriptionService } from '../+services/subscription.service';
@@ -20,12 +21,15 @@ export class PaymentComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
+                private modal: ModalService,
                 public stripe: StripeService,
                 public plans: PlanService,
                 public subscriptions: SubscriptionService) {
     }
 
     public ngOnInit(): void {
+        this.modal.title = 'Enter Payment Information';
+
         if (this.ready()) {
             this.createCardElement();
         }

@@ -1,22 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ModalDirective } from 'ng2-bootstrap/modal';
 import { Subscription } from '@freescan/skeleton';
 
+import { ModalService } from '../+services/modal.service';
 import { SubscriptionService } from '../+services/subscription.service';
 
 
 @Component({
-    selector: 'freescan-wizard',
-    template: `<router-outlet></router-outlet>`,
+    selector:    'freescan-billing-modal',
+    templateUrl: './modal.component.html',
+    styleUrls:   ['./modal.component.scss'],
 })
-export class WizardComponent implements OnInit {
+export class ModalComponent implements AfterViewInit {
+    @ViewChild('billingModal') public billingModal: ModalDirective;
+
+    // TODO
+    // Maybe create a ConfigureComponent to get the Gateway, Subscriptions ready
+
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private subscriptions: SubscriptionService) {
+                private subscriptions: SubscriptionService,
+                public modal: ModalService) {
     }
 
+    /**
+     * Show the appropriate route depending on whether the user
+     * has current subscriptions.
+     */
     public ngOnInit(): void {
         this.navigate();
+    }
+
+    /**
+     * Automatically open the Billing modal after it has loaded.
+     */
+    public ngAfterViewInit(): void {
+        if (!this.billingModal.isShown) {
+            this.billingModal.config.ignoreBackdropClick = true;
+            this.billingModal.show();
+        }
     }
 
     /**

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Plan } from '@freescan/skeleton';
 
+import { ModalService } from '../+services/modal.service';
 import { PlanService } from '../+services/plan.service';
 
 
@@ -15,10 +16,13 @@ export class PlansComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
+                private modal: ModalService,
                 public plans: PlanService) {
     }
 
     public ngOnInit(): void {
+        this.modal.title = 'Pick Your Plan';
+
         this.getPlans();
     }
 
