@@ -8,6 +8,8 @@ import {
 
 import { stripeStyles } from '../configuration';
 import { GatewayService } from './gateway.service';
+import { SubscriptionService } from './subscription.service';
+import { PlanService } from './plan.service';
 
 
 @Injectable()
@@ -23,31 +25,37 @@ export class StripeService {
     public formReady: boolean = false;
 
     constructor(private gateways: GatewayService,
+                private subscriptions: SubscriptionService,
+                private plans: PlanService,
                 @Inject(FREESCAN_ENV) private environment: Environment) {
         this.cashier = environment.api.cashier;
     }
 
     /**
      * Configure the Stripe instance using the Gateway ID from the API.
-     * Supports a callback if timing is necessary after instantiating Stripe.
+     *
+     * Pre-fetch the Subscriptions/Plans and set up the Stripe credit card form
+     * so the subscription management/payment funnel is very fast.
      *
      * Note: You will need to have Stripe's js available on the client.
      */
-    public configure(stripe: any, callback?: Function): void {
+    public configure(stripe: any): void {
         if (this.stripe) {
             return;
         }
 
+        // Configure Stripe client
         this.gateways.one()
             .subscribe((gateway: Gateway): void => {
                 this.stripe    = stripe(gateway.key);
                 this.elements  = this.stripe.elements();
+                this.createCardElement();
                 this.formReady = true;
-
-                if (typeof callback === 'function') {
-                    callback(gateway);
-                }
             });
+
+        // Pre-fetch resources
+        this.subscriptions.all().subscribe();
+        this.plans.all().subscribe();
     }
 
     /**

@@ -53,7 +53,7 @@ const providers: Provider[] = [
     {
         provide:  StripeService,
         useClass: StripeService,
-        deps:     [GatewayService, FREESCAN_ENV],
+        deps:     [GatewayService, SubscriptionService, PlanService, FREESCAN_ENV],
     },
 ];
 

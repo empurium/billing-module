@@ -31,7 +31,7 @@ export class PaymentComponent implements OnInit {
         this.modal.title = 'Enter Payment Information';
 
         if (this.ready()) {
-            this.createCardElement();
+            this.mountCardElement();
         }
     }
 
@@ -79,10 +79,9 @@ export class PaymentComponent implements OnInit {
     }
 
     /**
-     * Create the credit card form, attach it to the DOM, and watch for error messages.
+     * Mount the credit card form, attach it to the DOM, and watch for error messages.
      */
-    private createCardElement(): void {
-        this.stripe.createCardElement();
+    private mountCardElement(): void {
         this.stripe.elements.mount('#card-element');
         this.stripe.elements.on('change', (event: StripeResponse) => {
             this.complete = event.complete;
