@@ -51,13 +51,6 @@ export class StripeService {
     }
 
     /**
-     * Create a Stripe token.
-     */
-    public createToken(): Promise<StripeResponse> {
-        return this.stripe.createToken(this.cardElement);
-    }
-
-    /**
      * Use Stripe's beautiful credit card input form.
      * Consumer is responsible for using cardElement.mount() to the appropriate element.
      */
@@ -65,5 +58,12 @@ export class StripeService {
         if (!this.cardElement) {
             this.cardElement = this.elements.create('card', { style: stripeStyles });
         }
+    }
+
+    /**
+     * Create a Stripe token from the cardElement to be used for payment.
+     */
+    public createToken(): Promise<StripeResponse> {
+        return this.stripe.createToken(this.cardElement);
     }
 }
