@@ -82,8 +82,8 @@ export class PaymentComponent implements OnInit {
      * Mount the credit card form, attach it to the DOM, and watch for error messages.
      */
     private mountCardElement(): void {
-        this.stripe.elements.mount('#card-element');
-        this.stripe.elements.on('change', (event: StripeResponse) => {
+        this.stripe.cardElement.mount('#card-element');
+        this.stripe.cardElement.on('change', (event: StripeResponse) => {
             this.complete = event.complete;
 
             if (event.error) {
