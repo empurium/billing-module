@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 import { Subscription } from '@freescan/skeleton';
@@ -12,7 +12,7 @@ import { SubscriptionService } from '../+services/subscription.service';
     templateUrl: './modal.component.html',
     styleUrls:   ['./modal.component.scss'],
 })
-export class ModalComponent implements AfterViewInit {
+export class ModalComponent implements OnInit, AfterViewInit {
     @ViewChild('billingModal') public billingModal: ModalDirective;
 
     constructor(private route: ActivatedRoute,
