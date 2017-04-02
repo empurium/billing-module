@@ -47,6 +47,7 @@ export class StripeService {
         this.plans.all().subscribe();
 
         if (this.stripe || !stripe) {
+            if (typeof callback === 'function') { callback(); }
             return;
         }
 
@@ -58,9 +59,7 @@ export class StripeService {
                 this.createCardElement();
                 this.formReady = true;
 
-                if (typeof callback === 'function') {
-                    callback();
-                }
+                if (typeof callback === 'function') { callback(); }
             });
     }
 
