@@ -1,5 +1,6 @@
 export * from './billing.routing';
-export * from './wizard/wizard.component';
+export * from './billing-button/billing-button.component';
+export * from './modal/modal.component';
 export * from './subscriptions/subscriptions.component';
 export * from './plans/plans.component';
 export * from './payment/payment.component';

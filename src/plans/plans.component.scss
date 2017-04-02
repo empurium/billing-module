@@ -1,34 +1,21 @@
 .card.card-plan {
   z-index: 200;
   &.selected {
-    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.15);
+    border: 2px solid #53c557;
     transition: all 250ms;
-    &:hover {
-      box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.15);
-    }
-
-    .card-block {
-      h4 {
-        background-color: #4fa951;
-        color: white;
-        transition: all 250ms;
-      }
-    }
   }
+
   &:hover {
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.05);
   }
 
-  .card-block {
-    h4 {
-      cursor: pointer;
-      display: block;
-      color: #efefef;
-      height: 100px;
-      background-color: #95a695;
-      text-align: center;
-      line-height: 100px;
-      vertical-align: middle;
+  .btn-billing-modal {
+    cursor: pointer;
+    background-color: #53c557;
+    border: 1px solid darken(#53c557, 10%);
+    &:hover {
+      background-color: darken(#53c557, 8%);
+      border: 1px solid darken(#53c557, 15%);
     }
   }
 }

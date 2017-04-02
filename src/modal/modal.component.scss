@@ -1,0 +1,27 @@
+.modal-dialog {
+  margin-top: -1px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.25);
+
+  .modal-header {
+    background-color: #f9f9fa;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+    div.text-center {
+      width: 100%;
+    }
+  }
+
+  .modal-footer {
+    background-color: #f9f9fa;
+    justify-content: flex-start;
+  }
+
+  .btn-billing-modal {
+    cursor: pointer;
+    background-color: #53c557;
+    border: 1px solid darken(#53c557, 10%);
+    &:hover {
+      background-color: darken(#53c557, 8%);
+      border: 1px solid darken(#53c557, 15%);
+    }
+  }
+}

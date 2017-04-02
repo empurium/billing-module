@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Plan, Subscription, SubscriptionResponse } from '@freescan/skeleton';
 
+import { ModalService } from '../+services/modal.service';
 import { SubscriptionService } from '../+services/subscription.service';
 import { PlanService } from '../+services/plan.service';
 
@@ -9,16 +10,40 @@ import { PlanService } from '../+services/plan.service';
 @Component({
     selector:    'freescan-subscriptions',
     templateUrl: './subscriptions.component.html',
+    styleUrls:   ['./subscriptions.component.scss'],
 })
 export class SubscriptionsComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
+                private modal: ModalService,
                 public subscriptions: SubscriptionService,
                 public plans: PlanService) {
     }
 
     public ngOnInit(): void {
-        this.subscriptions.all().subscribe();
+        this.modal.title = 'Current Subscriptions';
+    }
+
+    /**
+     * Navigate to the list of Plans.
+     */
+    public viewPlans(): void {
+        this.router.navigate(['plans'], { relativeTo: this.route.parent });
+    }
+
+    /**
+     * Return the status of a given Subscription.
+     */
+    public status(type: string, subscription: Subscription): boolean {
+        switch (type) {
+        case 'active':
+            return !subscription.ends_at;
+        case 'ending-soon':
+            return subscription.ends_at && !this.subscriptions.ended(subscription.ends_at);
+        case 'ended':
+            return subscription.ends_at && this.subscriptions.ended(subscription.ends_at);
+        default:
+        }
     }
 
     /**
@@ -31,7 +56,7 @@ export class SubscriptionsComponent implements OnInit {
             .subscribe(
                 (response: SubscriptionResponse) => {
                     alert('Changed plans!');
-                    this.router.navigate(['/'], { relativeTo: this.route });
+                    this.router.navigate(['subscriptions'], { relativeTo: this.route.parent });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);
@@ -50,7 +75,7 @@ export class SubscriptionsComponent implements OnInit {
             .subscribe(
                 (response: SubscriptionResponse) => {
                     alert('Unsubscribed!');
-                    this.router.navigate(['/'], { relativeTo: this.route });
+                    this.router.navigate(['subscriptions'], { relativeTo: this.route.parent });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);

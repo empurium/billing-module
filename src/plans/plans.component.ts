@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Plan } from '@freescan/skeleton';
 
+import { ModalService } from '../+services/modal.service';
 import { PlanService } from '../+services/plan.service';
 
 
@@ -15,11 +16,12 @@ export class PlansComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
+                private modal: ModalService,
                 public plans: PlanService) {
     }
 
     public ngOnInit(): void {
-        this.getPlans();
+        this.modal.title = 'Pick Your Plan';
     }
 
     /**
@@ -39,7 +41,8 @@ export class PlansComponent implements OnInit {
     /**
      * Begin the payment process.
      */
-    public continue(): void {
+    public continue(plan: Plan): void {
+        this.select(plan);
         this.router
             .navigate(['payment-information'], { relativeTo: this.route.parent })
             .catch((error: Error) => console.error(error));
@@ -50,22 +53,5 @@ export class PlansComponent implements OnInit {
      */
     public grid(): string {
         return 'col-md-' + (this.plans.plans ? (this.plans.plans.length * this.cardWidth) : 12);
-    }
-
-    /**
-     * Get the available Plans.
-     * Automatically select the first plan until we have Defaults.
-     */
-    private getPlans(): void {
-        this.plans
-            .all()
-            .subscribe(
-                (plans: Plan[]) => {
-                    if (plans && plans.length) {
-                        this.plans.plan = plans[0];
-                    }
-                },
-                (error: string) => console.error(error),
-            );
     }
 }

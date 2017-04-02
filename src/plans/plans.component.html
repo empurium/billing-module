@@ -1,29 +1,26 @@
-<div>
-    <h2>Choose a plan that's right for you.</h2>
-    <p class="mt-2 mb-2">Downgrade or upgrade at any time.</p>
+<div class="row animated fadeIn" *ngIf="plans.plans && plans.plans.length">
+    <div class="col-sm-6 text-center" *ngFor="let plan of plans.plans">
+        <div class="card card-plan" [class.selected]="selected(plan)">
+            <div class="card-block">
+                <h4>{{ plan.name }}</h4>
 
-    <div class="row animated fadeIn" *ngIf="plans.plans && plans.plans.length">
-        <div class="col-sm-12 col-md-4 text-center" *ngFor="let plan of plans.plans">
-            <div class="card card-plan" [class.selected]="selected(plan)">
-                <div class="card-block">
-                    <h4 (click)="select(plan)">{{ plan.name }}</h4>
+                <h6 class="card-title mt-2 mb-2">
+                    ${{ plan.price }}/{{ plan.period }}
+                </h6>
 
-                    <h6 class="card-title mt-2 mb-2">
-                        ${{ plan.price }}/{{ plan.period }}
-                    </h6>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Accurate predictions</li>
+                    <li class="list-group-item">Publication search</li>
+                    <li class="list-group-item">View unlimited publications</li>
+                    <li class="list-group-item">Download files from publications</li>
+                </ul>
 
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Accurate predictions</li>
-                        <li class="list-group-item">Publication search</li>
-                        <li class="list-group-item">View unlimited publications</li>
-                        <li class="list-group-item">Download files from publications</li>
-                    </ul>
-                </div>
+                <button type="button" (click)="continue(plan)" class="btn btn-success btn-lg btn-billing-modal btn-pointer mt-3">Select</button>
             </div>
-        </div>
-
-        <div class="col-sm-12 {{ grid() }} text-center mt-2">
-            <button (click)="continue()" class="btn btn-lg btn-primary btn-pointer">Continue</button>
         </div>
     </div>
 </div>
+
+<p class="mt-2 mb-2 text-center" *ngIf="plans.plans && plans.plans.length">
+    Downgrade or upgrade at any time.
+</p>

@@ -1,31 +1,25 @@
-<div>
-    <h2>Enter your payment information.</h2>
-    <p class="mt-2 mb-2"></p>
+<div class="animated fadeIn text-center">
+    <div *ngIf="plans.plan">
+        <h3>{{ plans.plan.name }}</h3>
+        ${{ plans.plan.price }}/{{ plans.plan.period }}
+    </div>
 
-    <div class="row animated fadeIn">
+    <div class="row credit-card-form mt-3">
         <div class="col-sm-12 col-md-8">
-            <div class="card">
-                <div class="card-header" *ngIf="plans.plan">
-                    Subscribe to
-                    <strong>{{ plans.plan.name }}</strong>
-                    at ${{ plans.plan.price }}/{{ plans.plan.period }}
+            <div class="form-row">
+                <label for="card-element">Credit or Debit card</label>
+                <div id="card-element">
+                    <!-- a Stripe Element will be inserted here. -->
                 </div>
-                <div class="card-block">
-                    <div class="form-row">
-                        <label for="card-element">Credit or Debit card</label>
-                        <div id="card-element">
-                            <!-- a Stripe Element will be inserted here. -->
-                        </div>
 
-                        <p class="card-errors text-danger mt-2">
-                            <strong>{{ errors }}</strong>
-                        </p>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button (click)="subscribe()" [disabled]="disabled" class="btn btn-primary btn-pointer">Subscribe</button>
-                </div>
+                <p class="card-errors text-danger mt-2">
+                    <strong>{{ errors }}</strong>
+                </p>
             </div>
         </div>
     </div>
+
+    <button type="button" (click)="subscribe()" [disabled]="disabled" class="btn btn-lg btn-success btn-billing-modal btn-pointer mt-3 mb-3">
+        Subscribe
+    </button>
 </div>

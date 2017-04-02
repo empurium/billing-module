@@ -8,6 +8,8 @@ import {
 
 import { stripeStyles } from '../configuration';
 import { GatewayService } from './gateway.service';
+import { SubscriptionService } from './subscription.service';
+import { PlanService } from './plan.service';
 
 
 @Injectable()
@@ -23,38 +25,42 @@ export class StripeService {
     public formReady: boolean = false;
 
     constructor(private gateways: GatewayService,
+                private subscriptions: SubscriptionService,
+                private plans: PlanService,
                 @Inject(FREESCAN_ENV) private environment: Environment) {
         this.cashier = environment.api.cashier;
     }
 
     /**
      * Configure the Stripe instance using the Gateway ID from the API.
-     * Supports a callback if timing is necessary after instantiating Stripe.
      *
-     * Note: You will need to have Stripe's js available on the client.
+     * Pre-fetch the Subscriptions/Plans and set up the Stripe credit card form
+     * so the subscription management/payment funnel is very fast.
+     *
+     * Note: You will need to have Stripe's js loaded on the client.
      */
-    public configure(stripe: any, callback?: Function): void {
-        if (this.stripe) {
+    public configure(callback?: Function): void {
+        const stripe: any = window['Stripe'];
+
+        // Pre-fetch resources
+        this.subscriptions.all().subscribe(
+            () => { if (typeof callback === 'function') { callback(); } },
+            () => { if (typeof callback === 'function') { callback(); } },
+        );
+        this.plans.all().subscribe();
+
+        if (this.stripe || !stripe) {
             return;
         }
 
+        // Configure Stripe client
         this.gateways.one()
             .subscribe((gateway: Gateway): void => {
                 this.stripe    = stripe(gateway.key);
                 this.elements  = this.stripe.elements();
+                this.createCardElement();
                 this.formReady = true;
-
-                if (typeof callback === 'function') {
-                    callback(gateway);
-                }
             });
-    }
-
-    /**
-     * Create a Stripe token.
-     */
-    public createToken(): Promise<StripeResponse> {
-        return this.stripe.createToken(this.cardElement);
     }
 
     /**
@@ -65,5 +71,12 @@ export class StripeService {
         if (!this.cardElement) {
             this.cardElement = this.elements.create('card', { style: stripeStyles });
         }
+    }
+
+    /**
+     * Create a Stripe token from the cardElement to be used for payment.
+     */
+    public createToken(): Promise<StripeResponse> {
+        return this.stripe.createToken(this.cardElement);
     }
 }
