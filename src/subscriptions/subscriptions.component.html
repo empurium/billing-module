@@ -2,27 +2,24 @@
     <thead>
     <tr>
         <th>Plan</th>
-        <th>Price</th>
         <th>Ends</th>
         <th>Card</th>
-        <th>Expires</th>
         <th>Status</th>
         <th>&nbsp;</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let subscription of subscriptions.subscriptions">
-        <td><strong>{{ subscription.plan.data.name }}</strong></td>
         <td>
-            ${{ subscription.plan.data.price }}/{{ subscription.plan.data.period }}
+            <strong>{{ subscription.plan.data.name }}</strong>
+            <br />
+            <span class="text-muted">${{ subscription.plan.data.price }}/{{ subscription.plan.data.period }}</span>
         </td>
-        <td>{{ subscription.ends_at }}</td>
+        <td>{{ subscription.ends_at | date:'mediumDate' }}</td>
         <td>
             {{ subscription.card_brand }}
             <span *ngIf="subscription.card_brand && subscription.card_last_four">/</span>
             {{ subscription.card_last_four }}
-        </td>
-        <td>
             {{ subscription.card_expiration_date }}
         </td>
         <td>
@@ -30,11 +27,18 @@
             <span *ngIf="status('ending-soon', subscription)" class="badge badge-danger">Ending Soon</span>
             <span *ngIf="status('ended', subscription)" class="badge badge-default">Ended</span>
         </td>
-        <td>
-            <button
-                    *ngIf="!subscription.ends_at"
+        <td class="text-center">
+            <button type="button"
+                    *ngIf="status('ending-soon', subscription) || status('ended', subscription)"
+                    (click)="reactivate(subscription.plan.data)"
+                    class="btn btn-success btn-billing-modal btn-pointer">
+                Reactivate
+            </button>
+
+            <button type="button"
+                    *ngIf="status('active', subscription)"
                     (click)="delete(subscription)"
-                    class="btn btn-danger btn-pointer">
+                    class="btn btn-secondary btn-pointer">
                 Cancel
             </button>
         </td>

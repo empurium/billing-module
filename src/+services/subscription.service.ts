@@ -59,6 +59,16 @@ export class SubscriptionService {
     }
 
     /**
+     * Reactivate a subscription.
+     */
+    public reactivate(plan: Plan): Observable<SubscriptionResponse> {
+        return this.http
+            .hostname(this.cashier)
+            .post('subscriptions', { plan_id: plan.id })
+            .finally(() => this.bust());
+    }
+
+    /**
      * Change a given subscription from its current plan to another.
      */
     public change(subscription: Subscription, plan: Plan): Observable<SubscriptionResponse> {

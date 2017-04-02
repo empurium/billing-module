@@ -47,6 +47,24 @@ export class SubscriptionsComponent implements OnInit {
     }
 
     /**
+     * Reactivate a given plan.
+     */
+    public reactivate(plan: Plan): void {
+        this.subscriptions
+            .reactivate(plan)
+            .subscribe(
+                (response: SubscriptionResponse) => {
+                    alert('Reactivated this subscription!');
+                    this.router.navigate(['../'], { relativeTo: this.route.parent });
+                },
+                (error: SubscriptionResponse) => {
+                    console.error(error);
+                    alert('An error occurred.');
+                },
+            );
+    }
+
+    /**
      * Change from one plan to another.
      * Clears the cache of the subscription.
      */
@@ -56,7 +74,7 @@ export class SubscriptionsComponent implements OnInit {
             .subscribe(
                 (response: SubscriptionResponse) => {
                     alert('Changed plans!');
-                    this.router.navigate(['subscriptions'], { relativeTo: this.route.parent });
+                    this.router.navigate(['../'], { relativeTo: this.route.parent });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);
@@ -75,7 +93,7 @@ export class SubscriptionsComponent implements OnInit {
             .subscribe(
                 (response: SubscriptionResponse) => {
                     alert('Unsubscribed!');
-                    this.router.navigate(['subscriptions'], { relativeTo: this.route.parent });
+                    this.router.navigate(['../'], { relativeTo: this.route.parent });
                 },
                 (error: SubscriptionResponse) => {
                     console.error(error);
