@@ -17,7 +17,7 @@ export class SubscriptionService {
     public cashier: string = '';
 
     // Cache
-    public subscriptions: Subscription[] = [];
+    public subscriptions: Subscription[];
 
     constructor(private http: HttpService,
                 private authentication: AuthenticationService,
@@ -32,7 +32,7 @@ export class SubscriptionService {
     public all(userId?: string): Observable<Subscription[]> {
         userId = userId || this.authentication.userId();
 
-        if (this.subscriptions && this.subscriptions.length) {
+        if (this.subscriptions || this.subscriptions === null) {
             return Observable.of(this.subscriptions);
         }
 
@@ -42,6 +42,9 @@ export class SubscriptionService {
             .map((response: SubscriptionResponse): Subscription[] => {
                 this.subscriptions = response.data;
                 return response.data;
+            })
+            .finally(() => {
+                this.subscriptions = this.subscriptions || null;
             });
     }
 
@@ -79,7 +82,7 @@ export class SubscriptionService {
      * Bust the instance cache of the subscriptions to force refresh.
      */
     public bust(): void {
-        this.subscriptions = [];
+        delete this.subscriptions;
     }
 
     /**

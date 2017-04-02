@@ -50,11 +50,20 @@ export class ModalComponent implements AfterViewInit {
         this.subscriptions
             .all()
             .filter((subscriptions: Subscription[], idx: number): boolean => {
+                if (subscriptions === null) {
+                    return true;
+                }
+
                 return !this.subscriptions.ended(subscriptions[idx].ends_at);
             })
             .subscribe(
                 (subscriptions: Subscription[]) => {
-                    this.router.navigate(['subscriptions'], { relativeTo: this.route });
+                    if (subscriptions && subscriptions.length) {
+                        this.router.navigate(['subscriptions'], { relativeTo: this.route });
+                        return;
+                    }
+
+                    this.router.navigate(['plans'], { relativeTo: this.route });
                 },
                 (error: string): void => {
                     this.router.navigate(['plans'], { relativeTo: this.route });
