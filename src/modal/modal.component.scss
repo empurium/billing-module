@@ -14,4 +14,14 @@
     background-color: #f9f9fa;
     justify-content: flex-start;
   }
+
+  .btn-success {
+    cursor: pointer;
+    background-color: #31A335;
+    border: 1px solid darken(#31A335, 15%);
+    &:hover {
+      background-color: lighten(#31A335, 5%);
+      border: 1px solid darken(#31A335, 10%);
+    }
+  }
 }

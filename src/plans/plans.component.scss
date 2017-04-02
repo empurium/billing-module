@@ -8,16 +8,4 @@
   &:hover {
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.05);
   }
-
-  .card-block {
-    .btn-select-plan {
-      cursor: pointer;
-      background-color: #31A335;
-      border: 1px solid darken(#31A335, 15%);
-      &:hover {
-        background-color: lighten(#31A335, 5%);
-        border: 1px solid darken(#31A335, 10%);
-      }
-    }
-  }
 }
