@@ -39,8 +39,13 @@ export class StripeService {
      *
      * Note: You will need to have Stripe's js loaded on the client.
      */
-    public configure(): void {
+    public configure(callback?: Function): void {
         const stripe: any = window['Stripe'];
+
+        // Pre-fetch resources
+        this.subscriptions.all().subscribe(() => {}, () => {});
+        this.plans.all().subscribe();
+
         if (this.stripe || !stripe) {
             return;
         }
@@ -52,11 +57,11 @@ export class StripeService {
                 this.elements  = this.stripe.elements();
                 this.createCardElement();
                 this.formReady = true;
-            });
 
-        // Pre-fetch resources
-        this.subscriptions.all().subscribe();
-        this.plans.all().subscribe();
+                if (typeof callback === 'function') {
+                    callback();
+                }
+            });
     }
 
     /**
