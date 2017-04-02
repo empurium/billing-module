@@ -67,4 +67,11 @@ export class ModalComponent implements AfterViewInit {
                 },
             );
     }
+
+    /**
+     * Close the modal and navigate to the parent.
+     */
+    public cancel(): void {
+        this.router.navigate(['../'], { relativeTo: this.route });
+    }
 }
