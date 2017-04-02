@@ -1,0 +1,9 @@
+.btn-billing-modal {
+  cursor: pointer;
+  background-color: #53c557;
+  border: 1px solid darken(#53c557, 10%);
+  &:hover {
+    background-color: darken(#53c557, 8%);
+    border: 1px solid darken(#53c557, 15%);
+  }
+}

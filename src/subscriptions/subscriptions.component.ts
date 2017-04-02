@@ -10,6 +10,7 @@ import { PlanService } from '../+services/plan.service';
 @Component({
     selector:    'freescan-subscriptions',
     templateUrl: './subscriptions.component.html',
+    styleUrls:   ['./subscriptions.component.scss'],
 })
 export class SubscriptionsComponent implements OnInit {
     constructor(private route: ActivatedRoute,
@@ -28,6 +29,21 @@ export class SubscriptionsComponent implements OnInit {
      */
     public viewPlans(): void {
         this.router.navigate(['plans'], { relativeTo: this.route.parent });
+    }
+
+    /**
+     * Return the status of a given Subscription.
+     */
+    public status(type: string, subscription: Subscription): boolean {
+        switch (type) {
+        case 'active':
+            return !subscription.ends_at;
+        case 'ending-soon':
+            return subscription.ends_at && !this.subscriptions.ended(subscription.ends_at);
+        case 'ended':
+            return subscription.ends_at && this.subscriptions.ended(subscription.ends_at);
+        default:
+        }
     }
 
     /**

@@ -26,9 +26,9 @@
             {{ subscription.card_expiration_date }}
         </td>
         <td>
-            <span *ngIf="!subscription.ends_at" class="badge badge-success text-">Active</span>
-            <span *ngIf="!subscriptions.ended(subscription.ends_at)" class="badge badge-danger">Ending Soon</span>
-            <span *ngIf="subscriptions.ended(subscription.ends_at)" class="badge badge-default">Ended</span>
+            <span *ngIf="status('active', subscription)" class="badge badge-success">Active</span>
+            <span *ngIf="status('ending-soon', subscription)" class="badge badge-danger">Ending Soon</span>
+            <span *ngIf="status('ended', subscription)" class="badge badge-default">Ended</span>
         </td>
         <td>
             <button
