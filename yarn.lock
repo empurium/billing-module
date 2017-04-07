@@ -54,6 +54,16 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
+"@freescan/http@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@freescan/http/-/http-1.0.6.tgz#6a14c595a2e7fad63a3992d2288b7bb04f36ed04"
+  dependencies:
+    "@angular/core" "^4.0.0"
+    "@angular/http" "^4.0.0"
+    angular-oauth2-oidc "^1.0.20"
+    lodash "^4.17.4"
+    rxjs "^5.2.0"
+
 "@freescan/skeleton@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.1.1.tgz#1fe9edae550729caf2e26f26666b1f4fdc871c1e"
