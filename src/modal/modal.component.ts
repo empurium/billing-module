@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ModalDirective } from 'ng2-bootstrap/modal';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Subscription } from '@freescan/skeleton';
 
 import { ModalService } from '../+services/modal.service';

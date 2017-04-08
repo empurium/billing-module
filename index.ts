@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders, Provider } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { ModalModule } from 'ng2-bootstrap/modal';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpService } from '@freescan/http';
 import { FREESCAN_ENV, Environment, AuthenticationService } from '@freescan/skeleton';
 
