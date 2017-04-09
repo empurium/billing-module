@@ -55,7 +55,7 @@ export class SubscriptionService {
         return this.http
             .hostname(this.cashier)
             .post('subscriptions', { gateway_token: token, plan_id: plan.id })
-            .finally(() => this.bust());
+            .finally(() => this.forget());
     }
 
     /**
@@ -65,7 +65,7 @@ export class SubscriptionService {
         return this.http
             .hostname(this.cashier)
             .post('subscriptions', { plan_id: plan.id })
-            .finally(() => this.bust());
+            .finally(() => this.forget());
     }
 
     /**
@@ -76,7 +76,7 @@ export class SubscriptionService {
             .patch(`subscriptions/${subscription.id}`, {
                 plan_id: plan.id,
             })
-            .finally(() => this.bust());
+            .finally(() => this.forget());
     }
 
     /**
@@ -85,13 +85,13 @@ export class SubscriptionService {
     public delete(subscription: Subscription): Observable<SubscriptionResponse> {
         return this.http
             .delete(`subscriptions/${subscription.id}`)
-            .finally(() => this.bust());
+            .finally(() => this.forget());
     }
 
     /**
-     * Bust the instance cache of the subscriptions to force refresh.
+     * Forget the client-side cache of the subscriptions to force refresh.
      */
-    public bust(): void {
+    public forget(): void {
         delete this.subscriptions;
     }
 
