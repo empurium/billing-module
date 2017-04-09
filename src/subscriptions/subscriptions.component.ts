@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Plan, Subscription, SubscriptionResponse } from '@freescan/skeleton';
+import { Plan, Subscription, SubscriptionResponse, AlertService } from '@freescan/skeleton';
 
 import { ModalService } from '../+services/modal.service';
 import { SubscriptionService } from '../+services/subscription.service';
@@ -16,6 +16,7 @@ export class SubscriptionsComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private modal: ModalService,
+                private alerts: AlertService,
                 public subscriptions: SubscriptionService,
                 public plans: PlanService) {
     }
@@ -54,12 +55,11 @@ export class SubscriptionsComponent implements OnInit {
             .reactivate(plan)
             .subscribe(
                 (response: SubscriptionResponse) => {
-                    alert('Reactivated this subscription!');
+                    this.alerts.success('Subscription reactivated.', 'Welcome back!');
                     this.router.navigate(['../'], { relativeTo: this.route.parent });
                 },
-                (error: SubscriptionResponse) => {
-                    console.error(error);
-                    alert('An error occurred.');
+                (error: any) => {
+                    this.alerts.errorMessage(error);
                 },
             );
     }
@@ -73,12 +73,11 @@ export class SubscriptionsComponent implements OnInit {
             .change(subscription, plan)
             .subscribe(
                 (response: SubscriptionResponse) => {
-                    alert('Changed plans!');
+                    this.alerts.success('Plan changed successfully.', null);
                     this.router.navigate(['../'], { relativeTo: this.route.parent });
                 },
-                (error: SubscriptionResponse) => {
-                    console.error(error);
-                    alert('An error occurred.');
+                (error: any) => {
+                    this.alerts.errorMessage(error);
                 },
             );
     }
@@ -92,12 +91,11 @@ export class SubscriptionsComponent implements OnInit {
             .delete(subscription)
             .subscribe(
                 (response: SubscriptionResponse) => {
-                    alert('Unsubscribed!');
+                    this.alerts.info('Unsubscribed.', 'You will no longer be billed for this subscription.');
                     this.router.navigate(['../'], { relativeTo: this.route.parent });
                 },
-                (error: SubscriptionResponse) => {
-                    console.error(error);
-                    alert('An error occurred.');
+                (error: any) => {
+                    this.alerts.errorMessage(error);
                 },
             );
     }
