@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { StripeResponse, SubscriptionResponse } from '@freescan/skeleton';
+import { StripeResponse, SubscriptionResponse, AlertService } from '@freescan/skeleton';
 
 import { ModalService } from '../+services/modal.service';
 import { StripeService } from '../+services/stripe.service';
@@ -22,6 +22,7 @@ export class PaymentComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private modal: ModalService,
+                private alerts: AlertService,
                 public stripe: StripeService,
                 public plans: PlanService,
                 public subscriptions: SubscriptionService) {
@@ -101,6 +102,7 @@ export class PaymentComponent implements OnInit {
      */
     private success(response: SubscriptionResponse): void {
         this.submitting = false;
+        this.alerts.success('Payment successful!', null);
         this.router.navigate(['/']);
     }
 
