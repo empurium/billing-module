@@ -14,10 +14,10 @@ import { SubscriptionService } from '../+services/subscription.service';
     styleUrls:   ['./payment.component.scss'],
 })
 export class PaymentComponent implements OnInit {
-    protected disabled: boolean   = true;
-    protected submitting: boolean = false;
-    protected complete: boolean   = false;
-    protected errors: string      = '';
+    public disabled: boolean   = true;
+    public submitting: boolean = false;
+    public complete: boolean   = false;
+    public errors: string      = '';
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
