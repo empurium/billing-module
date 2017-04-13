@@ -1,6 +1,5 @@
 import { NgModule, ModuleWithProviders, Provider } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpService } from '@freescan/http';
 import { FREESCAN_ENV, AuthenticationService } from '@freescan/skeleton';
@@ -28,14 +27,7 @@ export * from './src/+services/stripe.service';
 
 
 const providers: Provider[] = [
-    OAuthService,
-    HttpService,
     ModalService,
-    {
-        provide:  AuthenticationService,
-        useClass: AuthenticationService,
-        deps:     [OAuthService, FREESCAN_ENV],
-    },
     {
         provide:  GatewayService,
         useClass: GatewayService,
@@ -62,6 +54,7 @@ const providers: Provider[] = [
 @NgModule({
     imports: [
         CommonModule,
+
         BillingRoutingModule,
         ModalModule.forRoot(),
     ],
