@@ -1,14 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpService } from '@freescan/http';
-import {
-    FREESCAN_ENV,
-    Environment,
-    Gateway,
-    GatewayResponse,
-} from '@freescan/skeleton';
+import { FREESCAN_ENV, Environment } from '@freescan/skeleton';
 
 import { gatewayId } from '../configuration';
+import { Gateway, GatewayResponse } from '../+models';
 
 
 @Injectable()

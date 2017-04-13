@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { StripeResponse, SubscriptionResponse, AlertService } from '@freescan/skeleton';
+import { AlertService } from '@freescan/skeleton';
 
+import { StripeResponse, SubscriptionResponse } from '../+models';
 import { ModalService } from '../+services/modal.service';
 import { StripeService } from '../+services/stripe.service';
 import { PlanService } from '../+services/plan.service';

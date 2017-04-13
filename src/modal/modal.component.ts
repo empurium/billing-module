@@ -1,8 +1,8 @@
 import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { Subscription } from '@freescan/skeleton';
 
+import { Subscription } from '../+models';
 import { ModalService } from '../+services/modal.service';
 import { SubscriptionService } from '../+services/subscription.service';
 import { StripeService } from '../+services/stripe.service';

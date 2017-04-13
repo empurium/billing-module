@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Plan } from '@freescan/skeleton';
 
+import { Plan } from '../+models';
 import { ModalService } from '../+services/modal.service';
 import { PlanService } from '../+services/plan.service';
 

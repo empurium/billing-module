@@ -1,3 +1,4 @@
+export * from './+models';
 export * from './billing.routing';
 export * from './billing-button/billing-button.component';
 export * from './modal/modal.component';

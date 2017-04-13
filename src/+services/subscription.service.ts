@@ -1,15 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { utc } from 'moment';
 import { HttpService } from '@freescan/http';
-import {
-    FREESCAN_ENV,
-    Environment,
-    AuthenticationService,
-    Subscription,
-    SubscriptionResponse,
-    Plan,
-} from '@freescan/skeleton';
+import { FREESCAN_ENV, Environment, AuthenticationService } from '@freescan/skeleton';
 import { Observable } from 'rxjs';
+
+import { Subscription, SubscriptionResponse, Plan } from '../+models';
 
 
 @Injectable()
