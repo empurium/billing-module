@@ -1,4 +1,4 @@
-import { Response } from '@freescan/skeleton';
+import { Response } from './response.model';
 import { Plan } from './plan.model';
 
 export class Subscription {

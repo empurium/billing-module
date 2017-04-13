@@ -1,4 +1,4 @@
-import { Response } from '@freescan/skeleton';
+import { Response } from './response.model';
 
 export class Gateway {
     public id: string;
