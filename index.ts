@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpService } from '@freescan/http';
-import { FREESCAN_ENV, Environment, AuthenticationService } from '@freescan/skeleton';
+import { FREESCAN_ENV, AuthenticationService } from '@freescan/skeleton';
 
 import { BillingRoutingModule } from './src/billing.routing';
 
@@ -84,11 +84,10 @@ const providers: Provider[] = [
     ],
 })
 export class BillingModule {
-    public static forRoot(environment: Environment): ModuleWithProviders {
+    public static forRoot(): ModuleWithProviders {
         return {
             ngModule:  BillingModule,
             providers: [
-                { provide: FREESCAN_ENV, useValue: environment },
                 ...providers,
             ],
         };
