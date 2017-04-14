@@ -4,8 +4,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpService } from '@freescan/http';
 import { FREESCAN_ENV, AuthenticationService } from '@freescan/skeleton';
 
-import { BillingRoutingModule } from './src/billing.routing';
-
 import { ModalService } from './src/+services/modal.service';
 import { GatewayService } from './src/+services/gateway.service';
 import { PlanService } from './src/+services/plan.service';
@@ -54,8 +52,6 @@ const providers: Provider[] = [
 @NgModule({
     imports: [
         CommonModule,
-
-        BillingRoutingModule,
         ModalModule.forRoot(),
     ],
 
