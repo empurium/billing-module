@@ -155,9 +155,9 @@
       "check-separator",
       "check-type"
     ],
-    "directive-selector": [true, "attribute", "freescan", "camelCase"],
-    "component-selector": [true, "element", "freescan", "kebab-case"],
-    "pipe-naming": [true, "camelCase", "freescan"],
+    "directive-selector": [true, "attribute", "studio-billing", "camelCase"],
+    "component-selector": [true, "element", "studio-billing", "kebab-case"],
+    "pipe-naming": [true, "camelCase", "studio-billing"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
