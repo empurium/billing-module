@@ -12,6 +12,7 @@ import { StripeService } from './src/+services/stripe.service';
 
 import { ModalComponent } from './src/modal/modal.component';
 import { BillingButtonComponent } from './src/billing-button/billing-button.component';
+import { PayWallComponent } from './src/paywall/paywall.component';
 import { SubscriptionsComponent } from './src/subscriptions/subscriptions.component';
 import { PlansComponent } from './src/plans/plans.component';
 import { PaymentComponent } from './src/payment/payment.component';
@@ -59,6 +60,7 @@ const providers: Provider[] = [
         ModalModule,
         ModalComponent,
         BillingButtonComponent,
+        PayWallComponent,
         SubscriptionsComponent,
         PlansComponent,
         PaymentComponent,
@@ -67,6 +69,7 @@ const providers: Provider[] = [
     declarations: [
         ModalComponent,
         BillingButtonComponent,
+        PayWallComponent,
         SubscriptionsComponent,
         PlansComponent,
         PaymentComponent,

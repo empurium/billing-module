@@ -1,5 +1,5 @@
-import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { Subscription } from '../+models';
@@ -9,45 +9,65 @@ import { StripeService } from '../+services/stripe.service';
 
 
 @Component({
-    selector:    'freescan-billing-modal',
+    selector:    'studio-billing-modal',
     templateUrl: './modal.component.html',
     styleUrls:   ['./modal.component.scss'],
 })
-export class ModalComponent implements OnInit, AfterViewInit {
+export class ModalComponent implements OnInit {
+    private step: string = 'plans';
     @ViewChild('billingModal') public billingModal: ModalDirective;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private stripe: StripeService,
                 private subscriptions: SubscriptionService,
-                public modal: ModalService) {
+                public modalService: ModalService) {
+    }
+
+    public ngOnInit(): void {
+        this.stripe.configure();
+        this.pickStep();
+        this.watchParams();
+        this.watchEvents();
     }
 
     /**
-     * Show the appropriate route depending on whether the user
-     * has current subscriptions.
+     * Show the billing modal when we see the correct query parameter.
+     * Allows us to act like a proper modal that can be on any URL.
      */
-    public ngOnInit(): void {
-        this.stripe.configure(() => {
-            this.navigate();
+    public watchParams(): void {
+        this.route
+            .queryParams
+            .map((params: Params) => {
+                if (params['module'] === 'billing') {
+                    this.show();
+                }
+                if (params['step']) {
+                    this.step = params['step'];
+                }
+            })
+            .subscribe();
+    }
+
+    /**
+     * Show the billing modal when an event tells us to.
+     */
+    public watchEvents(): void {
+        this.modalService.events.subscribe((name: string): void => {
+            if (name === 'show') {
+                this.show();
+            }
+            if (name === 'close') {
+                this.close();
+            }
         });
     }
 
     /**
-     * Automatically open the Billing modal after it has loaded.
+     * Gather information we need so we can show the appropriate component
+     * for managing subscriptions, subscribing to a new plan, etc.
      */
-    public ngAfterViewInit(): void {
-        if (!this.billingModal.isShown) {
-            this.billingModal.config.ignoreBackdropClick = true;
-            this.billingModal.show();
-        }
-    }
-
-    /**
-     * Start the wizard with the appropriate first route depending
-     * on whether the user has current subscriptions.
-     */
-    public navigate(): void {
+    public pickStep(): void {
         this.subscriptions
             .all()
             .filter((subscriptions: Subscription[], idx: number): boolean => {
@@ -60,22 +80,44 @@ export class ModalComponent implements OnInit, AfterViewInit {
             .subscribe(
                 (subscriptions: Subscription[]) => {
                     if (subscriptions && subscriptions.length) {
-                        this.router.navigate(['subscriptions'], { relativeTo: this.route });
+                        this.step = 'subscriptions';
                         return;
                     }
 
-                    this.router.navigate(['plans'], { relativeTo: this.route });
+                    this.step = 'plans';
                 },
                 (error: string): void => {
-                    this.router.navigate(['plans'], { relativeTo: this.route });
+                    this.step = 'plans';
                 },
             );
     }
 
     /**
-     * Close the modal and navigate to the parent.
+     * Return whether or not we are on a given step.
+     * Used to render appropriate component.
      */
-    public cancel(): void {
-        this.router.navigate(['../'], { relativeTo: this.route });
+    public onStep(step: string): boolean {
+        return this.step === step;
+    }
+
+    /**
+     * Show the modal if it's not already visible.
+     */
+    public show(): void {
+        if (!this.billingModal.isShown) {
+            this.billingModal.config = this.billingModal.config || {};
+            this.billingModal.config.ignoreBackdropClick = true;
+            this.billingModal.show();
+        }
+    }
+
+    /**
+     * Close the modal and remove the query param.
+     */
+    public close(): void {
+        if (this.billingModal && this.billingModal.isShown) {
+            this.router.navigate([], { queryParams: {} });
+            this.billingModal.hide();
+        }
     }
 }

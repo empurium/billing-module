@@ -4,16 +4,18 @@
         <div class="modal-content">
             <div class="modal-header pt-2">
                 <div class="text-center">
-                    <h3>{{ modal.title }}</h3>
+                    <h3>{{ modalService.title }}</h3>
                 </div>
             </div>
 
             <div class="modal-body">
-                <router-outlet></router-outlet>
+                <studio-billing-subscriptions *ngIf="onStep('subscriptions')"></studio-billing-subscriptions>
+                <studio-billing-plans *ngIf="onStep('plans')"></studio-billing-plans>
+                <studio-billing-payment *ngIf="onStep('payment')"></studio-billing-payment>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="cancel()">Close</button>
+                <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
             </div>
         </div>
     </div>
