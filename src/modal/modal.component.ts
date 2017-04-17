@@ -21,7 +21,7 @@ export class ModalComponent implements OnInit {
                 private router: Router,
                 private stripe: StripeService,
                 private subscriptions: SubscriptionService,
-                public modalService: ModalService) {
+                private modalService: ModalService) {
     }
 
     public ngOnInit(): void {
@@ -98,6 +98,13 @@ export class ModalComponent implements OnInit {
      */
     public onStep(step: string): boolean {
         return this.step === step;
+    }
+
+    /**
+     * Retrieve the modal title from the ModalService.
+     */
+    public title(): string {
+        return this.modalService.title;
     }
 
     /**
