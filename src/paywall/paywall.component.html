@@ -1,0 +1,19 @@
+<p>
+    This publication is marked exclusive, and available to subscribers.
+</p>
+
+<div *ngIf="authenticated()">
+    <div class="text-center">
+        <button (click)="billing()" class="btn btn-secondary btn-pointer btn-lg">Become a Subscriber</button>
+    </div>
+</div>
+
+<div *ngIf="!authenticated()">
+    <p>
+        You will need to login first.
+    </p>
+
+    <div class="text-center">
+        <button (click)="login()" class="btn btn-secondary btn-pointer btn-lg">Login</button>
+    </div>
+</div>
