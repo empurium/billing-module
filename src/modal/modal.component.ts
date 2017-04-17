@@ -107,6 +107,7 @@ export class ModalComponent implements OnInit {
         if (!this.billingModal.isShown) {
             this.billingModal.config = this.billingModal.config || {};
             this.billingModal.config.ignoreBackdropClick = true;
+            this.billingModal.config.keyboard = false;
             this.billingModal.show();
         }
     }
