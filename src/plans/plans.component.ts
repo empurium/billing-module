@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Plan } from '../+models';
 import { ModalService } from '../+services/modal.service';
@@ -7,15 +7,14 @@ import { PlanService } from '../+services/plan.service';
 
 
 @Component({
-    selector:    'freescan-plans',
+    selector:    'studio-billing-plans',
     templateUrl: './plans.component.html',
     styleUrls:   ['./plans.component.scss'],
 })
 export class PlansComponent implements OnInit {
     private cardWidth: number = 4;
 
-    constructor(private route: ActivatedRoute,
-                private router: Router,
+    constructor(private router: Router,
                 private modal: ModalService,
                 public plans: PlanService) {
     }
@@ -44,7 +43,7 @@ export class PlansComponent implements OnInit {
     public continue(plan: Plan): void {
         this.select(plan);
         this.router
-            .navigate(['payment-information'], { relativeTo: this.route.parent })
+            .navigate([], { queryParams: { module: 'billing', step: 'payment' } })
             .catch((error: Error) => console.error(error));
     }
 

@@ -10,7 +10,7 @@ import { SubscriptionService } from '../+services/subscription.service';
 
 
 @Component({
-    selector:    'freescan-payment',
+    selector:    'studio-billing-payment',
     templateUrl: './payment.component.html',
     styleUrls:   ['./payment.component.scss'],
 })
@@ -73,7 +73,7 @@ export class PaymentComponent implements OnInit {
      */
     private ready(): boolean {
         if (!this.stripe.elements || !this.plans.plan) {
-            this.router.navigate(['../'], { relativeTo: this.route });
+            this.router.navigate([], { queryParams: { module: 'billing' } });
             return false;
         }
 
@@ -104,7 +104,7 @@ export class PaymentComponent implements OnInit {
     private success(response: SubscriptionResponse): void {
         this.submitting = false;
         this.alerts.success('Payment successful!', null);
-        this.router.navigate(['/']);
+        this.router.navigate([], { queryParams: { module: 'billing' }});
     }
 
     /**

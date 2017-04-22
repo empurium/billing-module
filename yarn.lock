@@ -58,9 +58,9 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
-"@freescan/skeleton@^1.6.6":
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.6.6.tgz#b7c8ea3ba57d91d5980d93eb6026697e9b0c8a59"
+"@freescan/skeleton@^1.6.9":
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.6.9.tgz#da3f6df12dddede90dff08f64c591fae36767b65"
   dependencies:
     "@angular/animations" "^4.0.1"
     "@angular/common" "^4.0.1"

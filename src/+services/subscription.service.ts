@@ -27,6 +27,10 @@ export class SubscriptionService {
     public all(userId?: string): Observable<Subscription[]> {
         userId = userId || this.authentication.userId();
 
+        if (!userId) {
+            return Observable.of([]);
+        }
+
         if (this.subscriptions || this.subscriptions === null) {
             return Observable.of(this.subscriptions);
         }
