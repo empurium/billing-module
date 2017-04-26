@@ -15,7 +15,7 @@
             <br />
             <span class="text-muted">${{ subscription.plan.data.price }}/{{ subscription.plan.data.period }}</span>
         </td>
-        <td class="text-center">{{ subscription.ends_at | date:'mediumDate' }}</td>
+        <td class="text-center">{{ subscription.ends_at }}</td>
         <td class="text-center">
             {{ subscription.card_brand }}
             <span *ngIf="subscription.card_brand && subscription.card_last_four">/</span>
