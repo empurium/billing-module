@@ -28,7 +28,7 @@ export class BillingButtonComponent implements OnInit {
         this.router.navigate([], {
             queryParams: {
                 module: 'billing',
-                step:   'plans',
+                step:   'subscriptions',
             },
         });
     }
