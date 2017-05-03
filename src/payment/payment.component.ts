@@ -103,15 +103,16 @@ export class PaymentComponent implements OnInit {
     private success(response: SubscriptionResponse): void {
         this.submitting = false;
         this.alerts.success('Payment successful!', null);
-        this.router.navigate([], { queryParams: { }});
+        this.router.navigate([], { queryParams: {} });
     }
 
     /**
      * Show error messages from Stripe to the user.
      */
     private error(message: string): void {
-        this.errors = '';
-        this.errors = message;
+        this.submitting = false;
+        this.errors     = '';
+        this.errors     = message;
     }
 
     /**
