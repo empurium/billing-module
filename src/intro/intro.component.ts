@@ -13,7 +13,7 @@ export class IntroComponent implements OnInit {
     public loading: boolean = false;
 
     constructor(private router: Router,
-                private authentication: AuthenticationService,
+                public authentication: AuthenticationService,
                 private modalService: ModalService) {
     }
 
