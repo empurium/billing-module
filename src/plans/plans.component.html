@@ -1,3 +1,5 @@
+<studio-billing-loading *ngIf="!plans.plans"></studio-billing-loading>
+
 <p class="mt-2 mb-2 text-center animated fadeIn" *ngIf="plans.plans && plans.plans.length">
     Downgrade or upgrade at any time.
 </p>
