@@ -17,7 +17,7 @@ export class IntroComponent implements OnInit {
                 public authentication: AuthenticationService,
                 private windowService: WindowService,
                 private modalService: ModalService) {
-        this.window = this.windowService.nativeWindow();
+        this.window = this.windowService.nativeWindow;
     }
 
     public ngOnInit(): void {
