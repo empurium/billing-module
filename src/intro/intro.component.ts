@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '@freescan/skeleton';
 
 import { ModalService } from '../+services/modal.service';
 
@@ -9,7 +10,10 @@ import { ModalService } from '../+services/modal.service';
     templateUrl: './intro.component.html',
 })
 export class IntroComponent implements OnInit {
+    public loading: boolean = false;
+
     constructor(private router: Router,
+                private authentication: AuthenticationService,
                 private modalService: ModalService) {
     }
 
@@ -31,5 +35,13 @@ export class IntroComponent implements OnInit {
         this.router
             .navigate([], { queryParams: { module: 'billing', step: 'plans' } })
             .catch((error: Error) => console.error(error));
+    }
+
+    /**
+     * Begin the login flow.
+     */
+    public login(): void {
+        this.loading = true;
+        this.authentication.login();
     }
 }

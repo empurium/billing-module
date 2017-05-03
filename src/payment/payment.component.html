@@ -19,7 +19,9 @@
         </div>
     </div>
 
-    <button type="button" (click)="subscribe()" [disabled]="disabled" class="btn btn-lg btn-success btn-billing-modal btn-pointer mt-1 mb-3">
+    <button *ngIf="!submitting" type="button" (click)="subscribe()" [disabled]="disabled" class="btn btn-lg btn-success btn-billing-modal btn-pointer mt-1 mb-3">
         Subscribe
     </button>
+
+    <studio-billing-loading *ngIf="submitting"></studio-billing-loading>
 </div>

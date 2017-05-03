@@ -2,7 +2,17 @@
     <div class="col-sm-12 text-center">
         <p class="mt-2 mb-2" [innerHtml]="intro()"></p>
 
-        <button type="button" (click)="continue()" class="btn btn-success btn-lg btn-pointer mt-3">
+        <div *ngIf="!authentication.authenticated()">
+            <h5>First, you will login or create an account.</h5>
+
+            <button *ngIf="!loading" (click)="login()" class="btn btn-success btn-lg btn-pointer mt-1">
+                Continue
+            </button>
+
+            <studio-billing-loading *ngIf="loading"></studio-billing-loading>
+        </div>
+
+        <button *ngIf="authentication.authenticated()" (click)="continue()" class="btn btn-success btn-lg btn-pointer mt-1">
             Continue
         </button>
     </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AlertService } from '@freescan/skeleton';
 
 import { StripeResponse, SubscriptionResponse } from '../+models';
@@ -20,8 +20,7 @@ export class PaymentComponent implements OnInit {
     public complete: boolean   = false;
     public errors: string      = '';
 
-    constructor(private route: ActivatedRoute,
-                private router: Router,
+    constructor(private router: Router,
                 private modal: ModalService,
                 private alerts: AlertService,
                 public stripe: StripeService,
@@ -73,7 +72,7 @@ export class PaymentComponent implements OnInit {
      */
     private ready(): boolean {
         if (!this.stripe.elements || !this.plans.plan) {
-            this.router.navigate([], { queryParams: { module: 'billing' } });
+            this.router.navigate([], { queryParams: { module: 'billing', step: 'intro' } });
             return false;
         }
 
@@ -104,7 +103,7 @@ export class PaymentComponent implements OnInit {
     private success(response: SubscriptionResponse): void {
         this.submitting = false;
         this.alerts.success('Payment successful!', null);
-        this.router.navigate([], { queryParams: { module: 'billing' }});
+        this.router.navigate([], { queryParams: { }});
     }
 
     /**
