@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
@@ -14,8 +14,9 @@ import { StripeService } from '../+services/stripe.service';
     styleUrls:   ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-    private step: string = 'plans';
+    @Input() public intro: string = '';
     @ViewChild('billingModal') public billingModal: ModalDirective;
+    private step: string = 'intro';
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -29,6 +30,7 @@ export class ModalComponent implements OnInit {
         this.pickStep();
         this.watchParams();
         this.watchEvents();
+        this.modalService.intro = this.intro;
     }
 
     /**
@@ -39,6 +41,9 @@ export class ModalComponent implements OnInit {
         this.route
             .queryParams
             .map((params: Params) => {
+                if (params['module'] !== 'billing') {
+                    this.close();
+                }
                 if (params['module'] === 'billing') {
                     this.show();
                 }
@@ -84,10 +89,10 @@ export class ModalComponent implements OnInit {
                         return;
                     }
 
-                    this.step = 'plans';
+                    this.step = 'intro';
                 },
                 (error: string): void => {
-                    this.step = 'plans';
+                    this.step = 'intro';
                 },
             );
     }

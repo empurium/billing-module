@@ -10,6 +10,7 @@
 
             <div class="modal-body">
                 <studio-billing-subscriptions *ngIf="onStep('subscriptions')"></studio-billing-subscriptions>
+                <studio-billing-intro *ngIf="onStep('intro')"></studio-billing-intro>
                 <studio-billing-plans *ngIf="onStep('plans')"></studio-billing-plans>
                 <studio-billing-payment *ngIf="onStep('payment')"></studio-billing-payment>
             </div>
