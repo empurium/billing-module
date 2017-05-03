@@ -2,7 +2,7 @@ import { NgModule, ModuleWithProviders, Provider } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpService } from '@freescan/http';
-import { FREESCAN_ENV, AuthenticationService } from '@freescan/skeleton';
+import { FREESCAN_ENV, AuthenticationService, WindowService } from '@freescan/skeleton';
 
 import { ModalService } from './src/+services/modal.service';
 import { GatewayService } from './src/+services/gateway.service';
@@ -28,6 +28,7 @@ export * from './src/+services/stripe.service';
 
 
 const providers: Provider[] = [
+    WindowService,
     ModalService,
     {
         provide:  GatewayService,

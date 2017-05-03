@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '@freescan/skeleton';
+import { AuthenticationService, WindowService } from '@freescan/skeleton';
 
 import { ModalService } from '../+services/modal.service';
 
@@ -11,10 +11,13 @@ import { ModalService } from '../+services/modal.service';
 })
 export class IntroComponent implements OnInit {
     public loading: boolean = false;
+    private window: Window;
 
     constructor(private router: Router,
                 public authentication: AuthenticationService,
+                private windowService: WindowService,
                 private modalService: ModalService) {
+        this.window = this.windowService.nativeWindow();
     }
 
     public ngOnInit(): void {
@@ -42,6 +45,7 @@ export class IntroComponent implements OnInit {
      */
     public login(): void {
         this.loading = true;
-        this.authentication.login();
+        let state: string = this.window.location ? this.window.location.href : null;
+        this.authentication.login(state);
     }
 }
