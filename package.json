@@ -1,6 +1,6 @@
 {
   "name": "@freescan/billing",
-  "version": "1.5.10",
+  "version": "1.5.11",
   "description": "FreeScan Billing Interface",
   "main": "index.ts",
   "scripts": {
