@@ -1,9 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpService } from '@freescan/http';
-import { FREESCAN_ENV, Environment } from '@freescan/skeleton';
+import { FREESCAN_ENV, Environment, Plan, PlanResponse } from '@freescan/skeleton';
 import { Observable } from 'rxjs';
-
-import { Plan, PlanResponse } from '../+models';
 
 
 @Injectable()

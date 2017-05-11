@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertService } from '@freescan/skeleton';
+import { AlertService, SubscriptionService, SubscriptionResponse } from '@freescan/skeleton';
 
-import { StripeResponse, SubscriptionResponse } from '../+models';
+import { StripeResponse } from '../+models';
 import { ModalService } from '../+services/modal.service';
 import { StripeService } from '../+services/stripe.service';
 import { PlanService } from '../+services/plan.service';
-import { SubscriptionService } from '../+services/subscription.service';
 
 
 @Component({

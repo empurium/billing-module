@@ -2,12 +2,11 @@ import { NgModule, ModuleWithProviders, Provider } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpService } from '@freescan/http';
-import { FREESCAN_ENV, AuthenticationService, WindowService } from '@freescan/skeleton';
+import { FREESCAN_ENV, AuthenticationService, SubscriptionService, WindowService } from '@freescan/skeleton';
 
 import { ModalService } from './src/+services/modal.service';
 import { GatewayService } from './src/+services/gateway.service';
 import { PlanService } from './src/+services/plan.service';
-import { SubscriptionService } from './src/+services/subscription.service';
 import { StripeService } from './src/+services/stripe.service';
 
 import { ModalComponent } from './src/modal/modal.component';
@@ -23,12 +22,12 @@ export * from './src';
 export * from './src/+services/modal.service';
 export * from './src/+services/gateway.service';
 export * from './src/+services/plan.service';
-export * from './src/+services/subscription.service';
 export * from './src/+services/stripe.service';
 
 
 const providers: Provider[] = [
     WindowService,
+    AuthenticationService,
     ModalService,
     {
         provide:  GatewayService,
@@ -39,11 +38,6 @@ const providers: Provider[] = [
         provide:  PlanService,
         useClass: PlanService,
         deps:     [HttpService, FREESCAN_ENV],
-    },
-    {
-        provide:  SubscriptionService,
-        useClass: SubscriptionService,
-        deps:     [HttpService, AuthenticationService, FREESCAN_ENV],
     },
     {
         provide:  StripeService,
