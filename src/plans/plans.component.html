@@ -4,8 +4,8 @@
     Downgrade or upgrade at any time.
 </p>
 
-<div class="row animated fadeIn mb-2" *ngIf="plans.plans && plans.plans.length">
-    <div class="col-sm-6 text-center" *ngFor="let plan of plans.plans">
+<div *ngIf="plans.plans && plans.plans.length" class="row animated fadeIn mb-2">
+    <div *ngFor="let plan of plans.plans" [class.offset-sm-3]="single()" class="col-sm-6 text-center">
         <div class="card card-plan" [class.selected]="selected(plan)">
             <div class="card-block">
                 <h4>{{ plan.name }}</h4>
@@ -16,7 +16,6 @@
 
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Accurate predictions</li>
-                    <li class="list-group-item">Publication search</li>
                     <li class="list-group-item">View unlimited publications</li>
                     <li class="list-group-item">Download files from publications</li>
                 </ul>

@@ -53,4 +53,11 @@ export class PlansComponent implements OnInit {
     public grid(): string {
         return 'col-md-' + (this.plans.plans ? (this.plans.plans.length * this.cardWidth) : 12);
     }
+
+    /**
+     * Return true if there is only one plan.
+     */
+    public single(): boolean {
+        return !!(this.plans && this.plans.plans && this.plans.plans.length === 1);
+    }
 }
