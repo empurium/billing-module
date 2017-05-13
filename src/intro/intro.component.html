@@ -1,6 +1,6 @@
-<div class="row animated fadeIn mb-2">
+<div class="row animated fadeIn">
     <div class="col-sm-12 text-center">
-        <p class="mt-2 mb-2" [innerHtml]="intro()"></p>
+        <p [innerHtml]="intro()"></p>
 
         <div *ngIf="!authentication.authenticated()">
             <h5>Interested in becoming a subscriber?</h5>
