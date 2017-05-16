@@ -101,10 +101,9 @@ export class PaymentComponent implements OnInit {
      */
     private success(response: SubscriptionResponse): void {
         this.submitting = false;
-        this.alerts.success(
-            'Payment successful!',
-            'We are activating your account. If your reports are not immediately available, please refresh and try again.',
-        );
+        this.alerts.success('Payment successful!', null, 5000);
+        this.subscriberMessage();
+
         this.router.navigate([], { queryParams: {} });
     }
 
@@ -127,5 +126,19 @@ export class PaymentComponent implements OnInit {
         }
 
         this.disabled = true;
+    }
+
+    /**
+     * Delayed message about activating account.
+     * This will be removed when we have more real-time activation.
+     */
+    private subscriberMessage(): void {
+        setTimeout(() => {
+            this.alerts.info(
+                'Activating your account!',
+                'If your reports are not immediately available, please refresh and try again.',
+                10000,
+            );
+        }, 1500);
     }
 }
