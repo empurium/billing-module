@@ -101,7 +101,10 @@ export class PaymentComponent implements OnInit {
      */
     private success(response: SubscriptionResponse): void {
         this.submitting = false;
-        this.alerts.success('Payment successful!', null);
+        this.alerts.success(
+            'Payment successful!',
+            'We are activating your account. If your reports are not immediately available, please refresh and try again.',
+        );
         this.router.navigate([], { queryParams: {} });
     }
 
