@@ -1,8 +1,10 @@
 <studio-billing-loading *ngIf="loading"></studio-billing-loading>
 
+<!--
 <p class="mb-1 text-center animated fadeIn" *ngIf="plans && plans.length">
     Downgrade or upgrade at any time.
 </p>
+-->
 
 <div *ngIf="plans && plans.length" class="row animated fadeIn">
     <div *ngFor="let plan of plans" [class.offset-sm-3]="single()" class="col-sm-6 text-center">
