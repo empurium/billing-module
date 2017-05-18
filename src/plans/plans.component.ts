@@ -17,12 +17,12 @@ export class PlansComponent implements OnInit {
     private cardWidth: number = 4;
 
     constructor(private router: Router,
-                private modal: ModalService,
+                private modalService: ModalService,
                 public planService: PlanService) {
     }
 
     public ngOnInit(): void {
-        this.modal.title = 'Pick Your Plan';
+        this.modalService.title = 'Pick Your Plan';
         this.getPlans();
     }
 
@@ -73,6 +73,6 @@ export class PlansComponent implements OnInit {
      * Return true if there is only one plan.
      */
     public single(): boolean {
-        return !!(this.planService && this.planService.plans && this.planService.plans.length === 1);
+        return this.planService && this.planService.plans && this.planService.plans.length === 1;
     }
 }
