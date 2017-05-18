@@ -73,6 +73,20 @@ export class ModalComponent implements OnInit {
     }
 
     /**
+     * Return the step number the user is on.
+     */
+    public stepNumber(): number {
+        switch (this.step) {
+            case 'intro':
+                return 1;
+            case 'plans':
+                return 2;
+            case 'payment':
+                return 3;
+        }
+    }
+
+    /**
      * Retrieve the modal title from the ModalService.
      */
     public title(): string {
