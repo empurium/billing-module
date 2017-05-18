@@ -6,6 +6,8 @@ import { StripeResponse, Gateway } from '../+models';
 import { GatewayService } from './gateway.service';
 import { PlanService } from './plan.service';
 
+import { Subscription } from '@freescan/skeleton';
+
 
 @Injectable()
 export class StripeService {
@@ -37,12 +39,26 @@ export class StripeService {
     public configure(callback?: Function): void {
         const stripe: any = window['Stripe'];
 
-        // Pre-fetch resources
+        // Pre-fetch Subscriptions
         this.subscriptions.all().subscribe(
-            () => { if (typeof callback === 'function') { callback(); } },
-            () => { if (typeof callback === 'function') { callback(); } },
+            (subscriptions: Subscription[]|null) => {
+                if (typeof callback === 'function') {
+                    callback(subscriptions);
+                }
+            },
+            () => {
+                if (typeof callback === 'function') {
+                    callback(null);
+                }
+            },
         );
-        this.plans.all().subscribe();
+
+        // Pre-fetch Plans
+        this.plans.all().subscribe(
+            () => {
+                // Client cache warmed
+            },
+        );
 
         if (this.stripe || !stripe) {
             return;
