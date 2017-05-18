@@ -12,29 +12,44 @@ import { PlanService } from '../+services/plan.service';
     styleUrls:   ['./plans.component.scss'],
 })
 export class PlansComponent implements OnInit {
+    public loading: boolean   = true;
+    public plans: Plan[]      = [];
     private cardWidth: number = 4;
 
     constructor(private router: Router,
                 private modal: ModalService,
-                public plans: PlanService) {
+                public planService: PlanService) {
     }
 
     public ngOnInit(): void {
         this.modal.title = 'Pick Your Plan';
+        this.getPlans();
+    }
+
+    /**
+     * Request the list of plans for this white label. Should already be cached.
+     */
+    public getPlans(): void {
+        this.planService.all().subscribe(
+            (plans: Plan[]) => {
+                this.plans   = plans;
+                this.loading = false;
+            },
+        );
     }
 
     /**
      * Test whether or not the given Plan is currently selected.
      */
     public selected(plan: Plan): boolean {
-        return this.plans.plan ? this.plans.plan.id === plan.id : false;
+        return this.planService.plan ? this.planService.plan.id === plan.id : false;
     }
 
     /**
      * Select a given Plan.
      */
     public select(plan: Plan): void {
-        this.plans.plan = plan;
+        this.planService.plan = plan;
     }
 
     /**
@@ -51,13 +66,13 @@ export class PlansComponent implements OnInit {
      * Grid columns based on the number of plans. To center the Continue button accordingly.
      */
     public grid(): string {
-        return 'col-md-' + (this.plans.plans ? (this.plans.plans.length * this.cardWidth) : 12);
+        return 'col-md-' + (this.planService.plans ? (this.planService.plans.length * this.cardWidth) : 12);
     }
 
     /**
      * Return true if there is only one plan.
      */
     public single(): boolean {
-        return !!(this.plans && this.plans.plans && this.plans.plans.length === 1);
+        return !!(this.planService && this.planService.plans && this.planService.plans.length === 1);
     }
 }
