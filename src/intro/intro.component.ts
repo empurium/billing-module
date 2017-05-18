@@ -45,7 +45,11 @@ export class IntroComponent implements OnInit {
      */
     public login(): void {
         this.loading = true;
-        let state: string = this.window.location ? this.window.location.href : null;
+        let query: string = '?module=billing&step=plans';
+        let state: string = this.window.location && this.window.location.href
+            ? this.window.location.href.replace(/\?.*/, '') + query
+            : null;
+
         this.authentication.login(state);
     }
 }
