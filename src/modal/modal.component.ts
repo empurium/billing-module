@@ -1,7 +1,6 @@
 import { Component, ViewChild, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { SubscriptionService, Subscription } from '@freescan/skeleton';
 
 import { ModalService } from '../+services/modal.service';
 import { StripeService } from '../+services/stripe.service';
@@ -20,13 +19,11 @@ export class ModalComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private stripe: StripeService,
-                private subscriptions: SubscriptionService,
                 private modalService: ModalService) {
     }
 
     public ngOnInit(): void {
         this.stripe.configure();
-        this.pickStep();
         this.watchParams();
         this.watchEvents();
         this.modalService.intro = this.intro;
@@ -65,35 +62,6 @@ export class ModalComponent implements OnInit {
                 this.close();
             }
         });
-    }
-
-    /**
-     * Gather information we need so we can show the appropriate component
-     * for managing subscriptions, subscribing to a new plan, etc.
-     */
-    public pickStep(): void {
-        this.subscriptions
-            .all()
-            .filter((subscriptions: Subscription[], idx: number): boolean => {
-                if (subscriptions === null) {
-                    return true;
-                }
-
-                return !this.subscriptions.ended(subscriptions[idx].ends_at);
-            })
-            .subscribe(
-                (subscriptions: Subscription[]) => {
-                    if (subscriptions && subscriptions.length) {
-                        this.step = 'subscriptions';
-                        return;
-                    }
-
-                    this.step = 'intro';
-                },
-                (error: string): void => {
-                    this.step = 'intro';
-                },
-            );
     }
 
     /**
