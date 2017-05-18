@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from '@freescan/skeleton';
 
 import { StripeService } from '../+services/stripe.service';
 
@@ -12,15 +13,24 @@ import { StripeService } from '../+services/stripe.service';
 export class BillingButtonComponent implements OnInit {
     public disabled: boolean = true;
     public label: string     = 'Loading...';
+    public step: string      = 'subscriptions';
 
     constructor(private router: Router,
                 private stripe: StripeService) {
     }
 
     public ngOnInit(): void {
-        this.stripe.configure(() => {
+        this.stripe.configure((subscriptions: Subscription[]|null) => {
             this.disabled = false;
-            this.label    = 'Manage Billing';
+
+            if (subscriptions && subscriptions.length) {
+                this.step  = 'subscriptions';
+                this.label = 'Manage Subscription';
+                return;
+            }
+
+            this.step  = 'intro';
+            this.label = 'Become a Subscriber';
         });
     }
 
@@ -28,7 +38,7 @@ export class BillingButtonComponent implements OnInit {
         this.router.navigate([], {
             queryParams: {
                 module: 'billing',
-                step:   'subscriptions',
+                step:   this.step,
             },
         });
     }
