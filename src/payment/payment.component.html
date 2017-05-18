@@ -1,28 +1,33 @@
 <div class="animated fadeIn text-center">
     <div *ngIf="plans.plan">
-        <h3>{{ plans.plan.name }}</h3>
+        <h4>{{ plans.plan.name }}</h4>
         ${{ plans.plan.price }}/{{ plans.plan.period }}
     </div>
 
     <div class="row credit-card-form mt-2">
         <div class="col-sm-12 col-md-8">
             <div class="form-row">
-                <label for="card-element" class="mb-1">
-                    Enter Your Credit or Debit Card Below
-                </label>
+                <div class="card">
+                    <div class="card-header">
+                        <label for="card-element">
+                            Enter Your Credit or Debit Card Below.
+                        </label>
+                    </div>
+                    <div class="card-block">
+                        <div id="card-element" class="mt-1">
+                            <!-- a Stripe Element will be inserted here. -->
+                        </div>
 
-                <div id="card-element">
-                    <!-- a Stripe Element will be inserted here. -->
+                        <p class="card-errors text-danger mt-2">
+                            <strong>{{ errors }}</strong>
+                        </p>
+                    </div>
                 </div>
-
-                <p class="card-errors text-danger mt-2">
-                    <strong>{{ errors }}</strong>
-                </p>
             </div>
         </div>
     </div>
 
-    <button *ngIf="!submitting" type="button" (click)="subscribe()" [disabled]="disabled" class="btn btn-cta btn-lg btn-success btn-pointer mt-1 mb-3">
+    <button *ngIf="!submitting" type="button" (click)="subscribe()" [disabled]="disabled" class="btn btn-cta btn-lg btn-success btn-pointer mt-1 mb-2">
         Subscribe
     </button>
 
