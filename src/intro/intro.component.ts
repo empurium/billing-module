@@ -21,7 +21,7 @@ export class IntroComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.modalService.title = 'To view the rest of this article, you must be a subscriber.';
+        this.modalService.title = 'Get Access to Full Report';
     }
 
     /**
