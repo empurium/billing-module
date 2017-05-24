@@ -1,16 +1,15 @@
-<div class="row animated fadeIn">
+<div class="row">
     <div class="col-sm-12 text-center">
-        <p [innerHtml]="intro()"></p>
+        <div [innerHtml]="intro()"></div>
 
         <div *ngIf="!authentication.authenticated()">
             <h5>Interested in becoming a subscriber?</h5>
-            <p>First, you will need to create an account.</p>
 
-            <button *ngIf="!loading" (click)="login()" class="btn btn-cta btn-success btn-lg btn-pointer mt-0">
+            <button *ngIf="!loading" (click)="login()" class="btn btn-cta btn-success btn-lg btn-pointer mt-1">
                 Create Account
             </button>
 
-            <p *ngIf="!loading" class="mt-2">
+            <p *ngIf="!loading" class="mt-2 mb-1">
                 Already have an account?
                 <button (click)="login()" type="button" class="btn btn-href">Login</button>
             </p>
@@ -18,7 +17,7 @@
             <studio-billing-loading *ngIf="loading"></studio-billing-loading>
         </div>
 
-        <button *ngIf="authentication.authenticated()" (click)="continue()" class="btn btn-cta btn-success btn-lg btn-pointer mt-1">
+        <button *ngIf="authentication.authenticated()" (click)="continue()" class="btn btn-cta btn-success btn-lg btn-pointer mb-1">
             Become a Subscriber
         </button>
     </div>
