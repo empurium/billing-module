@@ -3,8 +3,6 @@
         <div [innerHtml]="intro()"></div>
 
         <div *ngIf="!authentication.authenticated()">
-            <h5>Interested in becoming a subscriber?</h5>
-
             <button *ngIf="!loading" (click)="login()" class="btn btn-cta btn-success btn-lg btn-pointer mt-1">
                 Create Account
             </button>
