@@ -81,7 +81,7 @@ export class PlansComponent implements OnInit {
      */
     public prettyPrice(plan: Plan): string {
         return plan.price && plan.price.match(/\.00$/)
-            ? plan.price.replace(/\.00$/, '')
+            ? plan.price.replace(/\.00$/, '').replace(/^(\d)(\d\d\d)/, '$1,$2')
             : plan.price;
     }
 }
