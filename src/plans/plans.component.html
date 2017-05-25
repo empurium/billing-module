@@ -11,7 +11,7 @@
                 <h4 class="text-success">{{ plan.name }}</h4>
 
                 <h6 class="card-title mt-1 mb-1">
-                    ${{ plan.price }}/{{ plan.period }}
+                    ${{ prettyPrice(plan) }}/{{ plan.period }}
                 </h6>
 
                 <div [innerHTML]="plan.description"></div>

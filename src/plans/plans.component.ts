@@ -75,4 +75,13 @@ export class PlansComponent implements OnInit {
     public single(): boolean {
         return this.planService && this.planService.plans && this.planService.plans.length === 1;
     }
+
+    /**
+     * Pretty price formatting.
+     */
+    public prettyPrice(plan: Plan): string {
+        return plan.price && plan.price.match(/\.00$/)
+            ? plan.price.replace(/\.00$/, '')
+            : plan.price;
+    }
 }
