@@ -4,19 +4,20 @@
     Switch plans or cancel anytime.
 </p>
 
-<div *ngIf="plans && plans.length" class="row animated fadeIn">
+<div *ngIf="plans && plans.length" class="row animated fadeIn mb-2">
     <div *ngFor="let plan of plans" [class.offset-sm-3]="single()" class="col-sm-4 text-center">
-        <div class="card card-plan" [class.selected]="selected(plan)">
+        <div class="card card-plan h-100" [class.selected]="selected(plan)">
             <div class="card-block">
                 <h4 class="text-success">{{ plan.name }}</h4>
 
                 <h6 class="card-title mt-1 mb-1">
-                    ${{ prettyPrice(plan) }}/{{ plan.period }}
+                    ${{ prettyPrice(plan) }}/{{ prettyPeriod(plan) }}
                 </h6>
 
                 <div [innerHTML]="plan.description"></div>
-
-                <button type="button" (click)="continue(plan)" class="btn btn-cta btn-success btn-lg btn-pointer mt-2">
+            </div>
+            <div class="card-footer">
+                <button type="button" (click)="continue(plan)" class="btn btn-cta btn-success btn-lg btn-pointer">
                     Select
                 </button>
             </div>

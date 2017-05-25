@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Plan } from '@freescan/skeleton';
+import * as _ from 'lodash';
 
 import { ModalService } from '../+services/modal.service';
 import { PlanService } from '../+services/plan.service';
@@ -12,9 +13,10 @@ import { PlanService } from '../+services/plan.service';
     styleUrls:   ['./plans.component.scss'],
 })
 export class PlansComponent implements OnInit {
-    public loading: boolean   = true;
-    public plans: Plan[]      = [];
-    private cardWidth: number = 4;
+    public loading: boolean       = true;
+    public plans: Plan[]          = [];
+    private cardWidth: number     = 4;
+    private yearlyDefault: string = '610beb21-b02d-4c3d-9012-a829238e4219';
 
     constructor(private router: Router,
                 private modalService: ModalService,
@@ -34,6 +36,11 @@ export class PlansComponent implements OnInit {
             (plans: Plan[]) => {
                 this.plans   = plans;
                 this.loading = false;
+                let defaultPlan: Plan = (<Plan>_.find(plans, { id: this.yearlyDefault }));
+
+                if (!this.planService.plan && defaultPlan) {
+                    this.planService.plan = defaultPlan;
+                }
             },
         );
     }
@@ -83,5 +90,22 @@ export class PlansComponent implements OnInit {
         return plan.price && plan.price.match(/\.00$/)
             ? plan.price.replace(/\.00$/, '').replace(/^(\d)(\d\d\d)/, '$1,$2')
             : plan.price;
+    }
+
+    /**
+     * Pretty period formatting.
+     */
+    public prettyPeriod(plan: Plan): string {
+        if (plan.period === 'yearly') {
+            return 'yr';
+        }
+        if (plan.period === 'quarterly') {
+            return 'qtrly';
+        }
+        if (plan.period === 'monthly') {
+            return 'mo';
+        }
+
+        return plan.period;
     }
 }
