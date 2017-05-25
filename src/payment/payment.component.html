@@ -1,6 +1,8 @@
 <div class="animated fadeIn text-center">
-    <div *ngIf="plans.plan">
-        <h4>{{ plans.plan.name }}</h4>
+    <div *ngIf="plans.plan" class="mt-1 mb-1">
+        <h4 class="mb-2">Your Plan</h4>
+
+        <h5 class="mb-0">{{ plans.plan.name }}</h5>
         ${{ plans.plan.price }}/{{ plans.plan.period }}
     </div>
 
