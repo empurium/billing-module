@@ -36,7 +36,7 @@ export class IntroComponent implements OnInit {
      */
     public continue(): void {
         this.router
-            .navigate([], { queryParams: { module: 'billing', step: 'plans' } })
+            .navigate([], { queryParams: { module: 'billing', step: 'plans' }, queryParamsHandling: 'merge' })
             .catch((error: Error) => console.error(error));
     }
 
@@ -45,7 +45,9 @@ export class IntroComponent implements OnInit {
      */
     public login(): void {
         this.loading = true;
-        let query: string = '?module=billing&step=plans';
+        let query: string = this.window.location && this.window.location.search
+            ? this.window.location.search.replace(/step=intro/, 'step=plans')
+            : '?module=billing&step=plans';
         let state: string = this.window.location && this.window.location.href
             ? this.window.location.href.replace(/\?.*/, '') + query
             : null;
