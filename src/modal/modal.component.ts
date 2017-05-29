@@ -24,7 +24,7 @@ export class ModalComponent implements OnInit {
 
     public ngOnInit(): void {
         this.stripe.configure();
-        this.watchParams();
+        this.watchRoute();
         this.watchEvents();
         this.modalService.intro = this.intro;
     }
@@ -33,10 +33,15 @@ export class ModalComponent implements OnInit {
      * Show the billing modal when we see the correct query parameter.
      * Allows us to act like a proper modal that can be on any URL.
      */
-    public watchParams(): void {
+    public watchRoute(): void {
         this.route
             .queryParams
             .map((params: Params) => {
+                this.modalService.promotion = '';
+                if (params['promotion'] === 'realvision') {
+                    this.modalService.promotion = params['promotion'];
+                }
+
                 if (params['module'] !== 'billing') {
                     this.close();
                 }

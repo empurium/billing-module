@@ -6,4 +6,6 @@ export class ModalService {
     public title: string = '';
     public intro: string = '';
     public events: EventEmitter<string> = new EventEmitter();
+
+    public promotion: string = '';
 }
