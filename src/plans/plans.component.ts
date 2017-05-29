@@ -38,11 +38,30 @@ export class PlansComponent implements OnInit {
                 this.loading = false;
                 let defaultPlan: Plan = (<Plan>_.find(plans, { id: this.yearlyDefault }));
 
+                this.filterRealVisionPromotionPlan();
+
                 if (!this.planService.plan && defaultPlan) {
                     this.planService.plan = defaultPlan;
                 }
             },
         );
+    }
+
+    /**
+     * Filter the RealVision promotion Plan accordingly.
+     */
+    public filterRealVisionPromotionPlan(): void {
+        const promotionPlanId: string = 'b0b6c4cd-8d63-497a-8f60-ac71f1049d67';
+
+        if (this.modalService.promotion === 'realvision') {
+            this.plans = this.plans.filter((plan: Plan) => {
+                return plan.id === promotionPlanId;
+            });
+        } else {
+            this.plans = this.plans.filter((plan: Plan) => {
+                return plan.id !== promotionPlanId;
+            });
+        }
     }
 
     /**
@@ -73,14 +92,14 @@ export class PlansComponent implements OnInit {
      * Grid columns based on the number of plans. To center the Continue button accordingly.
      */
     public grid(): string {
-        return 'col-md-' + (this.planService.plans ? (this.planService.plans.length * this.cardWidth) : 12);
+        return 'col-md-' + (this.plans ? (this.plans.length * this.cardWidth) : 12);
     }
 
     /**
      * Return true if there is only one plan.
      */
     public single(): boolean {
-        return this.planService && this.planService.plans && this.planService.plans.length === 1;
+        return this && this.plans && this.plans.length === 1;
     }
 
     /**
