@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from '@freescan/skeleton';
+import { Subscription } from '@rndstudio/skeleton';
 
 import { StripeService } from '../+services/stripe.service';
 

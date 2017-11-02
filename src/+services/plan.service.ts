@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpService } from '@freescan/http';
-import { FREESCAN_ENV, Environment, Plan, PlanResponse } from '@freescan/skeleton';
+import { HttpService } from '@rndstudio/http';
+import { FREESCAN_ENV, Environment, Plan, PlanResponse } from '@rndstudio/skeleton';
 import { Observable } from 'rxjs';
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertService, SubscriptionService, SubscriptionResponse } from '@freescan/skeleton';
+import { AlertService, SubscriptionService, SubscriptionResponse } from '@rndstudio/skeleton';
 
 import { StripeResponse } from '../+models';
 import { ModalService } from '../+services/modal.service';

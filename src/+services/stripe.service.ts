@@ -1,12 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
-import { FREESCAN_ENV, Environment, SubscriptionService } from '@freescan/skeleton';
+import { FREESCAN_ENV, Environment, SubscriptionService } from '@rndstudio/skeleton';
 
 import { stripeStyles } from '../configuration';
 import { StripeResponse, Gateway } from '../+models';
 import { GatewayService } from './gateway.service';
 import { PlanService } from './plan.service';
 
-import { Subscription } from '@freescan/skeleton';
+import { Subscription } from '@rndstudio/skeleton';
 
 
 @Injectable()

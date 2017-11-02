@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Plan } from '@freescan/skeleton';
+import { Plan } from '@rndstudio/skeleton';
 import * as _ from 'lodash';
 
 import { ModalService } from '../+services/modal.service';

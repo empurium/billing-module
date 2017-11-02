@@ -1,7 +1,7 @@
 {
-  "name": "@freescan/billing",
-  "version": "1.6.18",
-  "description": "FreeScan Billing Interface",
+  "name": "@rndstudio/billing",
+  "version": "1.6.19",
+  "description": "Publication Studio Billing Interface",
   "main": "index.ts",
   "scripts": {
     "lint": "tslint src/**/*.ts",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FreeScanDotCom/freescan-billing.git"
+    "url": "git+https://github.com/RnDStudio/web-billing.git"
   },
   "keywords": [
     "angular"
@@ -17,16 +17,16 @@
   "author": "Michael Simmons",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/FreeScanDotCom/freescan-billing/issues"
+    "url": "https://github.com/RnDStudio/web-billing/issues"
   },
-  "homepage": "https://github.com/FreeScanDotCom/freescan-billing#readme",
+  "homepage": "https://github.com/RnDStudio/web-billing#readme",
   "dependencies": {
     "@angular/common": "^4.0.1",
     "@angular/core": "^4.0.1",
     "@angular/http": "^4.0.1",
     "@angular/router": "^4.0.1",
-    "@freescan/http": "^1.1.3",
-    "@freescan/skeleton": "^1.12.2",
+    "@rndstudio/http": "^1.1.3",
+    "@rndstudio/skeleton": "^1.12.2",
     "angular-oauth2-oidc": "^1.0.20",
     "moment": "^2.18.1",
     "ngx-bootstrap": "1.6.6",

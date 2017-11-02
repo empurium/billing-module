@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService, WindowService } from '@freescan/skeleton';
+import { AuthenticationService, WindowService } from '@rndstudio/skeleton';
 
 import { ModalService } from '../+services/modal.service';
 

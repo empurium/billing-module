@@ -1,8 +1,8 @@
 import { NgModule, ModuleWithProviders, Provider } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { HttpService } from '@freescan/http';
-import { FREESCAN_ENV, AuthenticationService, SubscriptionService, WindowService } from '@freescan/skeleton';
+import { HttpService } from '@rndstudio/http';
+import { FREESCAN_ENV, AuthenticationService, SubscriptionService, WindowService } from '@rndstudio/skeleton';
 
 import { ModalService } from './src/+services/modal.service';
 import { GatewayService } from './src/+services/gateway.service';

@@ -48,9 +48,9 @@
   dependencies:
     tsickle "^0.21.0"
 
-"@freescan/http@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@freescan/http/-/http-1.1.3.tgz#96fef8f96e748cfb7137a17e8bac417850e63f99"
+"@rndstudio/http@^1.1.3", "@rndstudio/http@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@rndstudio/http/-/http-1.1.4.tgz#341cf351256033f9c557a3a9145c592f9e37357f"
   dependencies:
     "@angular/core" "^4.0.0"
     "@angular/http" "^4.0.0"
@@ -58,9 +58,9 @@
     lodash "^4.17.4"
     rxjs "^5.2.0"
 
-"@freescan/skeleton@^1.12.2":
-  version "1.12.2"
-  resolved "https://registry.yarnpkg.com/@freescan/skeleton/-/skeleton-1.12.2.tgz#2499f1a084a8fc4dd42a367296d7280ebede1292"
+"@rndstudio/skeleton@^1.12.2":
+  version "1.12.4"
+  resolved "https://registry.yarnpkg.com/@rndstudio/skeleton/-/skeleton-1.12.4.tgz#6548f649791f6c720869a9283d1c4aa559329179"
   dependencies:
     "@angular/animations" "^4.0.1"
     "@angular/common" "^4.0.1"
@@ -69,7 +69,7 @@
     "@angular/http" "^4.0.1"
     "@angular/platform-browser" "^4.0.1"
     "@angular/router" "^4.0.1"
-    "@freescan/http" "^1.1.3"
+    "@rndstudio/http" "^1.1.4"
     angular-oauth2-oidc "^1.0.20"
     angular2-jwt "^0.2.0"
     angulartics2 "^2.2.1"

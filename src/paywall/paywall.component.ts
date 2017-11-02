@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '@freescan/skeleton';
+import { AuthenticationService } from '@rndstudio/skeleton';
 
 import { ModalService } from '../+services/modal.service';
 

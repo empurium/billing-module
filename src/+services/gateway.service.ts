@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpService } from '@freescan/http';
-import { FREESCAN_ENV, Environment } from '@freescan/skeleton';
+import { HttpService } from '@rndstudio/http';
+import { FREESCAN_ENV, Environment } from '@rndstudio/skeleton';
 
 import { gatewayId } from '../configuration';
 import { Gateway, GatewayResponse } from '../+models';
