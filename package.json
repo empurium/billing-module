@@ -1,6 +1,6 @@
 {
   "name": "@rndstudio/billing",
-  "version": "1.6.20",
+  "version": "1.6.21",
   "description": "Publication Studio Billing Interface",
   "main": "index.ts",
   "scripts": {
