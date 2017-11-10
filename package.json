@@ -25,7 +25,7 @@
     "@angular/core": "^4.4.6",
     "@angular/http": "^4.4.6",
     "@angular/router": "^4.4.6",
-    "@rndstudio/http": "^1.1.3",
+    "@rndstudio/http": "^1.1.6",
     "@rndstudio/skeleton": "^1.13.0",
     "angular-oauth2-oidc": "^1.0.20",
     "moment": "^2.18.1",
