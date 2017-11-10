@@ -60,8 +60,8 @@
     lodash "^4.17.4"
 
 "@rndstudio/skeleton@^1.13.0":
-  version "1.13.2"
-  resolved "https://registry.yarnpkg.com/@rndstudio/skeleton/-/skeleton-1.13.2.tgz#287fa03fa652ec96f34194f8d5daab2d1145481b"
+  version "1.13.3"
+  resolved "https://registry.yarnpkg.com/@rndstudio/skeleton/-/skeleton-1.13.3.tgz#137af19ac8d5cc54d52d1875986fdb6b5e428202"
   dependencies:
     "@angular/animations" "^4.4.6"
     "@angular/common" "^4.4.6"
@@ -78,7 +78,7 @@
     bootstrap "4.0.0-alpha.6"
     moment "^2.18.1"
     ng-pick-datetime "^4.0.3"
-    ng2-toastr "^4.0.1"
+    ng2-toastr "^4.1.2"
     ngx-bootstrap "1.6.6"
     ngx-pagination "^3.0.0"
     zone.js "^0.8.12"
@@ -324,7 +324,7 @@ ng-pick-datetime@^4.0.3:
   dependencies:
     moment "^2.17.0"
 
-ng2-toastr@^4.0.1:
+ng2-toastr@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/ng2-toastr/-/ng2-toastr-4.1.2.tgz#1b452f07139961c38f866c6e24a06247efa21b11"
 
